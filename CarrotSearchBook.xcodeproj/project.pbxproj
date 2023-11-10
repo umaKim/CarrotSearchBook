@@ -28,6 +28,7 @@
 		7A6D65DD2AFEB10400D5BBEC /* BookDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6D65DC2AFEB10400D5BBEC /* BookDetailViewModel.swift */; };
 		7A6D65DF2AFEB10D00D5BBEC /* BookDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6D65DE2AFEB10D00D5BBEC /* BookDetailViewController.swift */; };
 		7A6D65E12AFEB11700D5BBEC /* BookDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6D65E02AFEB11700D5BBEC /* BookDetailView.swift */; };
+		7A6D65E32AFEB6B300D5BBEC /* BookDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6D65E22AFEB6B300D5BBEC /* BookDetail.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		7A6D65DC2AFEB10400D5BBEC /* BookDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailViewModel.swift; sourceTree = "<group>"; };
 		7A6D65DE2AFEB10D00D5BBEC /* BookDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailViewController.swift; sourceTree = "<group>"; };
 		7A6D65E02AFEB11700D5BBEC /* BookDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailView.swift; sourceTree = "<group>"; };
+		7A6D65E22AFEB6B300D5BBEC /* BookDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetail.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				7A6D65CF2AFE7AAA00D5BBEC /* Book.swift */,
+				7A6D65E22AFEB6B300D5BBEC /* BookDetail.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 				7A6D65DD2AFEB10400D5BBEC /* BookDetailViewModel.swift in Sources */,
 				7A6D65B62AFE3D9200D5BBEC /* Coordinator.swift in Sources */,
 				7A6D65BD2AFE3E4000D5BBEC /* BookListCoordinator.swift in Sources */,
+				7A6D65E32AFEB6B300D5BBEC /* BookDetail.swift in Sources */,
 				7A6D65DB2AFEB0FA00D5BBEC /* BookDetailBuilder.swift in Sources */,
 				7A6D65B82AFE3DAE00D5BBEC /* AppContainer.swift in Sources */,
 				7A6D65CD2AFE6A4E00D5BBEC /* BookListView.swift in Sources */,
