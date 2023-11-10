@@ -8,8 +8,8 @@
 import Foundation
 
 struct BookResponse: Codable {
-    let error: Int
-    let total: Int
+    let error: String
+    let total: String
     let page: String
     let books: [Book]
 }
