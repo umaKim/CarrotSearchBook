@@ -5,6 +5,7 @@
 //  Created by 김윤석 on 2023/11/10.
 //
 
+import Combine
 import UIKit
 
 final class BookListViewController: UIViewController {
@@ -18,8 +19,11 @@ final class BookListViewController: UIViewController {
     
     private let viewModel: BookListViewModel
     
+    private var cancellables: Set<AnyCancellable>
+    
     init(of viewModel: BookListViewModel) {
         self.viewModel = viewModel
+        self.cancellables = .init()
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -41,8 +45,22 @@ extension BookListViewController {
         
         contentView.tableView.delegate = self
         setupTableViewDataSource()
-        
         updateData()
+        
+        bindViewModelToViewController()
+    }
+    
+    private func bindViewModelToViewController() {
+        viewModel
+            .listenPublisher
+            .sink {[weak self] type in
+                guard let self else { return }
+                switch type {
+                case .update:
+                    self.updateData()
+                }
+            }
+            .store(in: &cancellables)
     }
 }
 
