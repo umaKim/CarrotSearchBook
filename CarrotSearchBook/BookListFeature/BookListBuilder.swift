@@ -11,7 +11,7 @@ enum BookListTransition: Transition { }
 
 final class BookListBuilder {
     class func build(container: AppContainer) -> Module<BookListTransition, UIViewController> {
-        let viewModel = BookListViewModel()
+        let viewModel = BookListViewModel(RepositoryImp())
         let viewController = BookListViewController(of: viewModel)
         return Module(
             viewController: viewController,
