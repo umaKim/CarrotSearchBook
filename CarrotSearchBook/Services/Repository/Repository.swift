@@ -14,6 +14,7 @@ enum BookApiType: String {
 
 protocol Repository {
     func fetchBooks(for title: String, page: Int) async throws -> BookResponse
+    func fetchBookDetail(of isbn: String) async throws -> BookDetail
 }
 
 enum BookApiError: Error {
@@ -32,6 +33,18 @@ final class RepositoryImp: Repository {
         do {
             let (data, response) = try await URLSession.shared.data(for: request)
             let decodedData = try JSONDecoder().decode(BookResponse.self, from: data)
+            return decodedData
+        } catch {
+            throw error
+        }
+    }
+    
+    func fetchBookDetail(of isbn: String) async throws -> BookDetail {
+        let urlString = "\(BookApi.baseUrl)books/\(isbn)"
+        let request = URLRequest(url: .init(string: urlString)!)
+        do {
+            let (data, response) = try await URLSession.shared.data(for: request)
+            let decodedData = try JSONDecoder().decode(BookDetail.self, from: data)
             return decodedData
         } catch {
             throw error
