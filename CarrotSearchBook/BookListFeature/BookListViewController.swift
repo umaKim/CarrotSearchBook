@@ -8,7 +8,13 @@
 import UIKit
 
 final class BookListViewController: UIViewController {
+    private typealias DataSource    = UITableViewDiffableDataSource<Section, Book>
+    private typealias Snapshot      = NSDiffableDataSourceSnapshot<Section, Book>
+    
+    enum Section { case main }
+    
     private let contentView = BookListView()
+    private var diffableDataSource: DataSource?
     
     private let viewModel: BookListViewModel
     
@@ -32,5 +38,37 @@ extension BookListViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.searchController = contentView.searchController
+        
+        contentView.tableView.delegate = self
+        setupTableViewDataSource()
+    }
+}
+
+//MARK: - TableView DiffableDataSource
+extension BookListViewController {
+    private func setupTableViewDataSource() {
+        diffableDataSource = DataSource(tableView: contentView.tableView, cellProvider: { tableView, indexPath, itemIdentifier in
+            guard 
+                let cell = tableView.dequeueReusableCell(
+                    withIdentifier: "",
+                    for: indexPath
+                ) as? UITableViewCell
+            else { return UITableViewCell() }
+            return cell
+        })
+    }
+    
+    private func updateData() {
+        var snapshot = Snapshot()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(viewModel.books)
+        self.diffableDataSource?.apply(snapshot, animatingDifferences: true)
+    }
+}
+
+//MARK: - UITableViewDelegate
+extension BookListViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
     }
 }

@@ -18,9 +18,16 @@ final class BookListView: UIView {
     
     private(set) var searchController = UISearchController(searchResultsController: nil)
     
+    private(set) var tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.rowHeight = 80
+        return tableView
+    }()
+    
     init() {
         super.init(frame: .zero)
         setupSearchController()
+        setupUI()
     }
     
     required init?(coder: NSCoder) {
@@ -39,5 +46,21 @@ extension BookListView: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let text = searchController.searchBar.text else {return }
         subject.send(.updateSearchQuery(text))
+    }
+}
+
+extension BookListView {
+    private func setupUI() {
+        [tableView].forEach { uv in
+            addSubview(uv)
+            uv.translatesAutoresizingMaskIntoConstraints = false
+        }
+        
+        NSLayoutConstraint.activate([
+            tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            tableView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
     }
 }

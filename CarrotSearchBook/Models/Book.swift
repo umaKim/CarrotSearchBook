@@ -14,7 +14,7 @@ struct BookResponse: Codable {
     let books: [Book]
 }
 
-struct Book: Codable {
+struct Book: Codable, Hashable {
     let title: String
     let subtitle: String
     let isbn13: String

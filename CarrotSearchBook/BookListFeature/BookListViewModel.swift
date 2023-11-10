@@ -12,6 +12,8 @@ final class BookListViewModel {
     private(set) lazy var transitionPublisher   = transitionSubject.eraseToAnyPublisher()
     private let transitionSubject               = PassthroughSubject<BookListTransition, Never>()
     
+    private(set) var books: [Book] = []
+    
     init() {
         
     }
