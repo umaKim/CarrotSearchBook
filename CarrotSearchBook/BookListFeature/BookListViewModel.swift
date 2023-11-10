@@ -23,7 +23,7 @@ final class BookListViewModel {
     
     private let repository: Repository
     
-    private var page: Int = 1
+    private var currentPage: Int = 1
     
     init(_ repository: Repository) {
         self.repository = repository
@@ -31,6 +31,11 @@ final class BookListViewModel {
             let bookResponse = try await repository.fetchBooks(for: "computer", page: page)
             self.page = Int(bookResponse.page) ?? 1
             self.books = bookResponse.books
+    private var query: String = ""
+    func updateQuery(_ title: String) {
+        self.currentPage = 1
+        self.query = title
+    }
             self.listenSubject.send(.update)
         }
     }

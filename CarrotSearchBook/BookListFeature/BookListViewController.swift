@@ -47,7 +47,19 @@ extension BookListViewController {
         setupTableViewDataSource()
         updateData()
         
+        bindViewToViewController()
         bindViewModelToViewController()
+    }
+    
+    private func bindViewToViewController() {
+        contentView
+            .publisher.sink { action in
+                switch action {
+                case .searchButtonClicked(let query):
+                    self.viewModel.updateQuery(query)
+                }
+            }
+            .store(in: &cancellables)
     }
     
     private func bindViewModelToViewController() {

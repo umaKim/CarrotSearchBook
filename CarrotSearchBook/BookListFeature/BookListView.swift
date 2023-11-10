@@ -9,7 +9,7 @@ import Combine
 import UIKit
 
 enum BookListViewAction {
-    case updateSearchQuery(String)
+    case searchButtonClicked(String)
 }
 
 final class BookListView: UIView {
@@ -42,14 +42,14 @@ final class BookListView: UIView {
 extension BookListView {
     private func setupSearchController() {
         searchController.searchBar.placeholder = "Search Book"
-        searchController.searchResultsUpdater = self
+        searchController.searchBar.delegate = self
     }
 }
 
-extension BookListView: UISearchResultsUpdating {
-    func updateSearchResults(for searchController: UISearchController) {
-        guard let text = searchController.searchBar.text else {return }
-        subject.send(.updateSearchQuery(text))
+extension BookListView: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let searchText = searchBar.text else { return }
+        subject.send(.searchButtonClicked(searchText))
     }
 }
 
