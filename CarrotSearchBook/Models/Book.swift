@@ -7,14 +7,14 @@
 
 import Foundation
 
-struct BookResponse: Codable {
+struct BookResponse: Decodable {
     let error: String
     let total: String
     let page: String
     let books: [Book]
 }
 
-struct Book: Codable, Hashable {
+struct Book: Decodable, Hashable {
     let title: String
     let subtitle: String
     let isbn13: String
