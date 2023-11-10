@@ -10,14 +10,16 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
+    var appCoordinator: AppCoordinator?
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
-        window = UIWindow(windowScene: windowScene)
-        let vc = ViewController()
-        let nav = UINavigationController(rootViewController: vc)
-        nav.setNavigationBarHidden(true, animated: true)
-        window?.rootViewController = vc
-        window?.makeKeyAndVisible()
+        window                = UIWindow(frame: windowScene.coordinateSpace.bounds)
+        window?.windowScene   = windowScene
+        
+        guard let window else { return }
+        let appContainer      = AppContainerImplementation()
+        appCoordinator        = AppCoordinator(window: window, container: appContainer)
+        appCoordinator?.start()
     }
 }
