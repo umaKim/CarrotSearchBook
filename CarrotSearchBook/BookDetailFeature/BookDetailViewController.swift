@@ -13,8 +13,11 @@ final class BookDetailViewController: UIViewController {
     
     private let viewModel: BookDetailViewModel
     
+    private var cancellables: Set<AnyCancellable>
+    
     init(of viewModel: BookDetailViewModel) {
         self.viewModel = viewModel
+        self.cancellables = .init()
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -29,5 +32,17 @@ final class BookDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.leftBarButtonItem = contentView.popButton
+        
+        contentView
+            .publisher
+            .sink {[weak self] action in
+                switch action {
+                case .pop:
+                    self?.viewModel.pop()
+                }
+            }
+            .store(in: &cancellables)
     }
 }

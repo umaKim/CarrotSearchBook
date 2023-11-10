@@ -37,5 +37,8 @@ final class BookDetailViewModel {
     }
     
     private var bookDetail: BookDetail?
+    
+    func pop() {
+        transitionSubject.send(.pop)
     }
 }
