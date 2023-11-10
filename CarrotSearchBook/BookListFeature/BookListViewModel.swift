@@ -55,4 +55,9 @@ final class BookListViewModel {
             self.listenSubject.send(.update)
         }
     }
+    
+    func moveToBookDetail(_ index: Int) {
+        let isbn = books[index].isbn13
+        transitionSubject.send(.bookDetail(isbn))
+    }
 }

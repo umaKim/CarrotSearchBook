@@ -118,6 +118,6 @@ extension BookListViewController {
 //MARK: - UITableViewDelegate
 extension BookListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        viewModel.moveToBookDetail(indexPath.item)
     }
 }

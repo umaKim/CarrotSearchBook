@@ -7,7 +7,9 @@
 
 import UIKit
 
-enum BookListTransition: Transition { }
+enum BookListTransition: Transition {
+    case bookDetail(String)
+}
 
 final class BookListBuilder {
     class func build(container: AppContainer) -> Module<BookListTransition, UIViewController> {

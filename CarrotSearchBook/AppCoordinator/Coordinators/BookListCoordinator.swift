@@ -28,6 +28,19 @@ final class BookListCoordinator: Coordinator {
     
     func start() {
         let module = BookListBuilder.build(container: container)
+        module
+            .transitionPublisher
+            .sink {[weak self] transition in
+                switch transition {
+                case .bookDetail(let isbn):
+                    self?.bookDetail(for: isbn)
+                }
+            }
+            .store(in: &cancellables)
         setRoot(module.viewController)
+    }
+    
+    private func bookDetail(for isbn: String) {
+        print(isbn)
     }
 }
