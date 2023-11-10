@@ -42,15 +42,14 @@ extension BookListViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.searchController = contentView.searchController
-        
         contentView.tableView.delegate = self
         setupTableViewDataSource()
-        updateData()
-        
         bindViewToViewController()
         bindViewModelToViewController()
     }
-    
+}
+
+extension BookListViewController {
     private func bindViewToViewController() {
         contentView
             .publisher.sink { action in
