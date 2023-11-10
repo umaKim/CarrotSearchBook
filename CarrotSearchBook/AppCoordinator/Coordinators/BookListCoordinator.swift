@@ -27,6 +27,7 @@ final class BookListCoordinator: Coordinator {
     }
     
     func start() {
-        
+        let module = BookListBuilder.build(container: container)
+        setRoot(module.viewController)
     }
 }
