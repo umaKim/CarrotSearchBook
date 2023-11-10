@@ -8,7 +8,6 @@
 import UIKit
 
 final class BookListViewController: UIViewController {
-    
     private let contentView = BookListView()
     
     private let viewModel: BookListViewModel
@@ -21,7 +20,10 @@ final class BookListViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+}
+
+//MARK: - Life Cycle
+extension BookListViewController {
     override func loadView() {
         super.loadView()
         view = contentView
