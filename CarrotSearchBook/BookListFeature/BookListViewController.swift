@@ -76,6 +76,18 @@ extension BookListViewController {
     }
 }
 
+extension BookListViewController: UIScrollViewDelegate {
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        let offsetY         = scrollView.contentOffset.y
+        let contentHeight   = scrollView.contentSize.height
+        let height          = scrollView.frame.size.height
+        
+        if offsetY > contentHeight - height {
+            viewModel.fetchBooks()
+        }
+    }
+}
+
 //MARK: - TableView DiffableDataSource
 extension BookListViewController {
     private func setupTableViewDataSource() {

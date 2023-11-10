@@ -24,18 +24,37 @@ final class BookListViewModel {
     private let repository: Repository
     
     private var currentPage: Int = 1
+    private var hasMorePages: Bool = true
     
     init(_ repository: Repository) {
         self.repository = repository
-        Task {@MainActor in 
-            let bookResponse = try await repository.fetchBooks(for: "computer", page: page)
-            self.page = Int(bookResponse.page) ?? 1
-            self.books = bookResponse.books
+    }
+    
     private var query: String = ""
+    
+    private var isLoading: Bool = false
+    
     func updateQuery(_ title: String) {
         self.currentPage = 1
         self.query = title
+        self.fetchBooks()
     }
+    
+    func fetchBooks() {
+        if isLoading || query.isEmpty {
+            return
+        }
+        isLoading = true
+        guard hasMorePages else { return }
+        Task { @MainActor in
+            let bookResponse = try await repository.fetchBooks(for: query, page: currentPage)
+            if bookResponse.books.isEmpty {
+                self.hasMorePages = false
+            } else {
+                self.books += bookResponse.books
+                self.currentPage += 1
+            }
+            self.isLoading = false
             self.listenSubject.send(.update)
         }
     }
