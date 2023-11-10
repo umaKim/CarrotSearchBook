@@ -41,11 +41,8 @@ final class BookListViewModel {
     }
     
     func fetchBooks() {
-        if isLoading || query.isEmpty {
-            return
-        }
+        if isLoading || query.isEmpty || !hasMorePages { return }
         isLoading = true
-        guard hasMorePages else { return }
         Task { @MainActor in
             let bookResponse = try await repository.fetchBooks(for: query, page: currentPage)
             if bookResponse.books.isEmpty {
