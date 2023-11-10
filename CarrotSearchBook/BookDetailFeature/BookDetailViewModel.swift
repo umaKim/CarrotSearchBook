@@ -16,7 +16,26 @@ final class BookDetailViewModel {
     private(set) lazy var transitionPublisher   = transitionSubject.eraseToAnyPublisher()
     private let transitionSubject               = PassthroughSubject<BookDetailTransition, Never>()
     
-    init() {
+    private let repository: Repository
+    
+    private let isbn: String
+    
+    init(_ repository: Repository, isbn: String) {
+        self.repository = repository
+        self.isbn = isbn
         
+        fetch()
+    }
+    
+    private func fetch() {
+        Task { @MainActor in
+            let bookDetail = try await repository.fetchBookDetail(of: isbn)
+            self.bookDetail = bookDetail
+            
+            print(bookDetail)
+        }
+    }
+    
+    private var bookDetail: BookDetail?
     }
 }

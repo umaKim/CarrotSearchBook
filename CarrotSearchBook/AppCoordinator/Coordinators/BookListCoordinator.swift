@@ -41,6 +41,18 @@ final class BookListCoordinator: Coordinator {
     }
     
     private func bookDetail(for isbn: String) {
-        print(isbn)
+        let module = BookDetailBuilder.build(container: container, isbn: isbn)
+        module
+            .transitionPublisher
+            .sink { [weak self] transition in
+                switch transition {
+                case .pop: 
+                    self?.pop()
+                    self?.didFinishSubject.send()
+                    break
+                }
+            }
+            .store(in: &cancellables)
+        push(module.viewController)
     }
 }
