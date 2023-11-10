@@ -17,6 +17,10 @@
 		7A6D65BD2AFE3E4000D5BBEC /* BookListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6D65BC2AFE3E4000D5BBEC /* BookListCoordinator.swift */; };
 		7A6D65BF2AFE3E6600D5BBEC /* BookDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6D65BE2AFE3E6600D5BBEC /* BookDetailCoordinator.swift */; };
 		7A6D65C22AFE3EDC00D5BBEC /* Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6D65C12AFE3EDC00D5BBEC /* Module.swift */; };
+		7A6D65C72AFE6A2500D5BBEC /* BookListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6D65C62AFE6A2500D5BBEC /* BookListViewController.swift */; };
+		7A6D65C92AFE6A3800D5BBEC /* BookListBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6D65C82AFE6A3800D5BBEC /* BookListBuilder.swift */; };
+		7A6D65CB2AFE6A4600D5BBEC /* BookListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6D65CA2AFE6A4600D5BBEC /* BookListViewModel.swift */; };
+		7A6D65CD2AFE6A4E00D5BBEC /* BookListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6D65CC2AFE6A4E00D5BBEC /* BookListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +36,10 @@
 		7A6D65BC2AFE3E4000D5BBEC /* BookListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookListCoordinator.swift; sourceTree = "<group>"; };
 		7A6D65BE2AFE3E6600D5BBEC /* BookDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailCoordinator.swift; sourceTree = "<group>"; };
 		7A6D65C12AFE3EDC00D5BBEC /* Module.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Module.swift; sourceTree = "<group>"; };
+		7A6D65C62AFE6A2500D5BBEC /* BookListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookListViewController.swift; sourceTree = "<group>"; };
+		7A6D65C82AFE6A3800D5BBEC /* BookListBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookListBuilder.swift; sourceTree = "<group>"; };
+		7A6D65CA2AFE6A4600D5BBEC /* BookListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookListViewModel.swift; sourceTree = "<group>"; };
+		7A6D65CC2AFE6A4E00D5BBEC /* BookListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +76,7 @@
 				7A6D65A22AFE376700D5BBEC /* SceneDelegate.swift */,
 				7A6D65C02AFE3ED700D5BBEC /* Module */,
 				7A6D65B42AFE3D7E00D5BBEC /* AppCoordinator */,
+				7A6D65C52AFE6A1000D5BBEC /* BookListFeature */,
 				7A6D65A92AFE376900D5BBEC /* Assets.xcassets */,
 				7A6D65AB2AFE376900D5BBEC /* LaunchScreen.storyboard */,
 				7A6D65AE2AFE376900D5BBEC /* Info.plist */,
@@ -101,6 +110,17 @@
 				7A6D65C12AFE3EDC00D5BBEC /* Module.swift */,
 			);
 			path = Module;
+			sourceTree = "<group>";
+		};
+		7A6D65C52AFE6A1000D5BBEC /* BookListFeature */ = {
+			isa = PBXGroup;
+			children = (
+				7A6D65C82AFE6A3800D5BBEC /* BookListBuilder.swift */,
+				7A6D65CA2AFE6A4600D5BBEC /* BookListViewModel.swift */,
+				7A6D65C62AFE6A2500D5BBEC /* BookListViewController.swift */,
+				7A6D65CC2AFE6A4E00D5BBEC /* BookListView.swift */,
+			);
+			path = BookListFeature;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -175,11 +195,15 @@
 			files = (
 				7A6D65BF2AFE3E6600D5BBEC /* BookDetailCoordinator.swift in Sources */,
 				7A6D65BB2AFE3E0000D5BBEC /* AppCoordinator.swift in Sources */,
+				7A6D65C72AFE6A2500D5BBEC /* BookListViewController.swift in Sources */,
 				7A6D65C22AFE3EDC00D5BBEC /* Module.swift in Sources */,
 				7A6D65B62AFE3D9200D5BBEC /* Coordinator.swift in Sources */,
 				7A6D65BD2AFE3E4000D5BBEC /* BookListCoordinator.swift in Sources */,
 				7A6D65B82AFE3DAE00D5BBEC /* AppContainer.swift in Sources */,
+				7A6D65CD2AFE6A4E00D5BBEC /* BookListView.swift in Sources */,
+				7A6D65CB2AFE6A4600D5BBEC /* BookListViewModel.swift in Sources */,
 				7A6D65A12AFE376700D5BBEC /* AppDelegate.swift in Sources */,
+				7A6D65C92AFE6A3800D5BBEC /* BookListBuilder.swift in Sources */,
 				7A6D65A32AFE376700D5BBEC /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
