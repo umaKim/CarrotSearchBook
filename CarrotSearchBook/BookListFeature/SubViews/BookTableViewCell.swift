@@ -51,6 +51,7 @@ final class BookTableViewCell: UITableViewCell {
 
 extension BookTableViewCell {
     func configure(with book: Book) {
+        bookImageView.downloaded(from: book.image, contentMode: .scaleToFill)
         titleLabel.text = book.title
         subtitleLabel.text = book.subtitle
         priceLabel.text = book.price
