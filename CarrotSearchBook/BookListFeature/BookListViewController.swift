@@ -49,7 +49,9 @@ extension BookListViewController {
     }
 }
 
+//MARK: - Binding
 extension BookListViewController {
+    // view -> ViewController
     private func bindViewToViewController() {
         contentView
             .publisher.sink { action in
@@ -61,6 +63,7 @@ extension BookListViewController {
             .store(in: &cancellables)
     }
     
+    //ViewModel -> ViewController
     private func bindViewModelToViewController() {
         viewModel
             .listenPublisher
@@ -75,6 +78,7 @@ extension BookListViewController {
     }
 }
 
+//MARK: - UIScrollViewDelegate
 extension BookListViewController: UIScrollViewDelegate {
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         let offsetY         = scrollView.contentOffset.y
