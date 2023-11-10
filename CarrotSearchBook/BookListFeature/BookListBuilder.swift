@@ -10,7 +10,7 @@ import UIKit
 enum BookListTransition: Transition { }
 
 final class BookListBuilder {
-    class func build(userName: String, container: AppContainer) -> Module<BookListTransition, UIViewController> {
+    class func build(container: AppContainer) -> Module<BookListTransition, UIViewController> {
         let viewModel = BookListViewModel()
         let viewController = BookListViewController(of: viewModel)
         return Module(
