@@ -41,19 +41,23 @@ extension BookListViewController {
         
         contentView.tableView.delegate = self
         setupTableViewDataSource()
+        
+        updateData()
     }
 }
 
 //MARK: - TableView DiffableDataSource
 extension BookListViewController {
     private func setupTableViewDataSource() {
-        diffableDataSource = DataSource(tableView: contentView.tableView, cellProvider: { tableView, indexPath, itemIdentifier in
-            guard 
+        diffableDataSource = DataSource(tableView: contentView.tableView, cellProvider: {[weak self] tableView, indexPath, itemIdentifier in
+            guard
                 let cell = tableView.dequeueReusableCell(
-                    withIdentifier: "",
+                    withIdentifier: BookTableViewCell.identifier,
                     for: indexPath
-                ) as? UITableViewCell
+                ) as? BookTableViewCell,
+                let self
             else { return UITableViewCell() }
+            cell.configure(with: self.viewModel.books[indexPath.item])
             return cell
         })
     }

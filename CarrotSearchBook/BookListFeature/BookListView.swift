@@ -20,6 +20,10 @@ final class BookListView: UIView {
     
     private(set) var tableView: UITableView = {
         let tableView = UITableView()
+        tableView.register(
+            BookTableViewCell.self,
+            forCellReuseIdentifier: BookTableViewCell.identifier
+        )
         tableView.rowHeight = 80
         return tableView
     }()

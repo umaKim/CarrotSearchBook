@@ -22,6 +22,7 @@
 		7A6D65CB2AFE6A4600D5BBEC /* BookListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6D65CA2AFE6A4600D5BBEC /* BookListViewModel.swift */; };
 		7A6D65CD2AFE6A4E00D5BBEC /* BookListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6D65CC2AFE6A4E00D5BBEC /* BookListView.swift */; };
 		7A6D65D02AFE7AAA00D5BBEC /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6D65CF2AFE7AAA00D5BBEC /* Book.swift */; };
+		7A6D65D22AFE809000D5BBEC /* BookTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6D65D12AFE809000D5BBEC /* BookTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		7A6D65CA2AFE6A4600D5BBEC /* BookListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookListViewModel.swift; sourceTree = "<group>"; };
 		7A6D65CC2AFE6A4E00D5BBEC /* BookListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookListView.swift; sourceTree = "<group>"; };
 		7A6D65CF2AFE7AAA00D5BBEC /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
+		7A6D65D12AFE809000D5BBEC /* BookTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 		7A6D65C52AFE6A1000D5BBEC /* BookListFeature */ = {
 			isa = PBXGroup;
 			children = (
+				7A6D65D32AFE80D100D5BBEC /* SubViews */,
 				7A6D65C82AFE6A3800D5BBEC /* BookListBuilder.swift */,
 				7A6D65CA2AFE6A4600D5BBEC /* BookListViewModel.swift */,
 				7A6D65C62AFE6A2500D5BBEC /* BookListViewController.swift */,
@@ -132,6 +135,14 @@
 				7A6D65CF2AFE7AAA00D5BBEC /* Book.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		7A6D65D32AFE80D100D5BBEC /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				7A6D65D12AFE809000D5BBEC /* BookTableViewCell.swift */,
+			);
+			path = SubViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -214,6 +225,7 @@
 				7A6D65CD2AFE6A4E00D5BBEC /* BookListView.swift in Sources */,
 				7A6D65CB2AFE6A4600D5BBEC /* BookListViewModel.swift in Sources */,
 				7A6D65A12AFE376700D5BBEC /* AppDelegate.swift in Sources */,
+				7A6D65D22AFE809000D5BBEC /* BookTableViewCell.swift in Sources */,
 				7A6D65C92AFE6A3800D5BBEC /* BookListBuilder.swift in Sources */,
 				7A6D65D02AFE7AAA00D5BBEC /* Book.swift in Sources */,
 				7A6D65A32AFE376700D5BBEC /* SceneDelegate.swift in Sources */,
