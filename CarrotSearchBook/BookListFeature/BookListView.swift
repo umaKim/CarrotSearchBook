@@ -24,7 +24,7 @@ final class BookListView: UIView {
             BookTableViewCell.self,
             forCellReuseIdentifier: BookTableViewCell.identifier
         )
-        tableView.rowHeight = 80
+        tableView.rowHeight = 100
         return tableView
     }()
     
