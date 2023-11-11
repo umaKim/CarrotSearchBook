@@ -40,6 +40,25 @@ final class BookListView: UIView {
     }
 }
 
+//MARK: - paging loading view
+extension BookListView {
+    func loadingView(status isLoading: Bool) {
+        isLoading ? showLoadingView() : hideLoadingView()
+    }
+    
+    private func showLoadingView() {
+        let activityIndicator = UIActivityIndicatorView(style: .medium)
+        activityIndicator.startAnimating()
+        activityIndicator.isHidden = false
+        activityIndicator.frame = .init(origin: .zero, size: .init(width: 100, height: 100))
+        tableView.tableFooterView = activityIndicator
+    }
+            
+    private func hideLoadingView() {
+        tableView.tableFooterView = nil
+    }
+}
+
 extension BookListView {
     private func setupSearchController() {
         searchController.searchBar.placeholder = "Search Book"
