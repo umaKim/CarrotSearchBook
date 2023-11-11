@@ -54,9 +54,6 @@ final class BookTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        contentView.backgroundColor = .black
-        
         setupUI()
     }
     
@@ -88,6 +85,8 @@ extension BookTableViewCell {
 
 extension BookTableViewCell {
     private func setupUI() {
+        contentView.backgroundColor = .black
+        
         let titlesStackView = UIStackView(arrangedSubviews: [titleLabel, subtitleLabel, isbn13Label, urlLabel])
         titlesStackView.axis = .vertical
         titlesStackView.alignment = .leading

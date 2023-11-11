@@ -8,7 +8,7 @@
 import Combine
 import UIKit
 
-final class BookDetailViewController: UIViewController, LoadingShowable, Alertable {
+final class BookDetailViewController: UIViewController, LoadingShowable {
     private let contentView = BookDetailView()
     
     private let viewModel: BookDetailViewModel
@@ -32,9 +32,29 @@ final class BookDetailViewController: UIViewController, LoadingShowable, Alertab
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         navigationItem.leftBarButtonItem = contentView.popButton
-        
+        bindViewToViewController()
+        bindViewModelToViewController()
+    }
+}
+
+//MARK: - Binding
+extension BookDetailViewController: Alertable {
+    // view -> ViewController
+    private func bindViewToViewController() {
+        contentView
+            .publisher
+            .sink {[weak self] action in
+                switch action {
+                case .pop:
+                    self?.viewModel.pop()
+                }
+            }
+            .store(in: &cancellables)
+    }
+    
+    //ViewModel -> ViewController
+    private func bindViewModelToViewController() {
         viewModel
             .listenPublisher
             .sink {[weak self] type in
@@ -46,16 +66,6 @@ final class BookDetailViewController: UIViewController, LoadingShowable, Alertab
                     self.contentView.configure(with: viewModel.bookDetail)
                 case .message(let title, let message):
                     self.showDefaultAlert(title: title, message: message)
-                }
-            }
-            .store(in: &cancellables)
-        
-        contentView
-            .publisher
-            .sink {[weak self] action in
-                switch action {
-                case .pop:
-                    self?.viewModel.pop()
                 }
             }
             .store(in: &cancellables)
