@@ -8,7 +8,7 @@
 import Combine
 import UIKit
 
-final class BookDetailViewController: UIViewController {
+final class BookDetailViewController: UIViewController, LoadingShowable, Alertable {
     private let contentView = BookDetailView()
     
     private let viewModel: BookDetailViewModel
@@ -34,6 +34,21 @@ final class BookDetailViewController: UIViewController {
         super.viewDidLoad()
         
         navigationItem.leftBarButtonItem = contentView.popButton
+        
+        viewModel
+            .listenPublisher
+            .sink {[weak self] type in
+                guard let self else { return }
+                switch type {
+                case .isLoading(let isLoading):
+                    isLoading ? showLoadingView() : hideLoadingView()
+                case .updateData:
+                    self.contentView.configure(with: viewModel.bookDetail)
+                case .message(let title, let message):
+                    self.showDefaultAlert(title: title, message: message)
+                }
+            }
+            .store(in: &cancellables)
         
         contentView
             .publisher
