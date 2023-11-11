@@ -35,6 +35,8 @@
 		7A6D65E82AFF4F1F00D5BBEC /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6D65E72AFF4F1F00D5BBEC /* LoadingView.swift */; };
 		7A6D65EA2AFF564100D5BBEC /* JSONDecoder+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6D65E92AFF564100D5BBEC /* JSONDecoder+Ext.swift */; };
 		7A6D65EE2AFF6D9700D5BBEC /* Alertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6D65ED2AFF6D9700D5BBEC /* Alertable.swift */; };
+		7A6EFF6A2AFFF6DB00E5954F /* BookDetailDomain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6EFF692AFFF6DB00E5954F /* BookDetailDomain.swift */; };
+		7A6EFF6F2AFFF90600E5954F /* BookDomain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6EFF6E2AFFF90600E5954F /* BookDomain.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +70,8 @@
 		7A6D65E72AFF4F1F00D5BBEC /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		7A6D65E92AFF564100D5BBEC /* JSONDecoder+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONDecoder+Ext.swift"; sourceTree = "<group>"; };
 		7A6D65ED2AFF6D9700D5BBEC /* Alertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alertable.swift; sourceTree = "<group>"; };
+		7A6EFF692AFFF6DB00E5954F /* BookDetailDomain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailDomain.swift; sourceTree = "<group>"; };
+		7A6EFF6E2AFFF90600E5954F /* BookDomain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDomain.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,8 +106,7 @@
 			children = (
 				7A6D65A02AFE376700D5BBEC /* AppDelegate.swift */,
 				7A6D65A22AFE376700D5BBEC /* SceneDelegate.swift */,
-				7A6D65E72AFF4F1F00D5BBEC /* LoadingView.swift */,
-				7A6D65ED2AFF6D9700D5BBEC /* Alertable.swift */,
+				7A6EFF6C2AFFF71700E5954F /* Common */,
 				7A6D65E42AFEC6AF00D5BBEC /* Extension */,
 				7A6D65D42AFE8C4100D5BBEC /* Services */,
 				7A6D65D82AFE8C7800D5BBEC /* Repository */,
@@ -151,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				7A6D65D32AFE80D100D5BBEC /* SubViews */,
+				7A6EFF6D2AFFF8F400E5954F /* Models */,
 				7A6D65C82AFE6A3800D5BBEC /* BookListBuilder.swift */,
 				7A6D65CA2AFE6A4600D5BBEC /* BookListViewModel.swift */,
 				7A6D65C62AFE6A2500D5BBEC /* BookListViewController.swift */,
@@ -196,6 +200,7 @@
 		7A6D65D92AFEB0E500D5BBEC /* BookDetailFeature */ = {
 			isa = PBXGroup;
 			children = (
+				7A6EFF6B2AFFF6E500E5954F /* Models */,
 				7A6D65DA2AFEB0FA00D5BBEC /* BookDetailBuilder.swift */,
 				7A6D65DC2AFEB10400D5BBEC /* BookDetailViewModel.swift */,
 				7A6D65DE2AFEB10D00D5BBEC /* BookDetailViewController.swift */,
@@ -211,6 +216,31 @@
 				7A6D65E92AFF564100D5BBEC /* JSONDecoder+Ext.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		7A6EFF6B2AFFF6E500E5954F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7A6EFF692AFFF6DB00E5954F /* BookDetailDomain.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		7A6EFF6C2AFFF71700E5954F /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				7A6D65E72AFF4F1F00D5BBEC /* LoadingView.swift */,
+				7A6D65ED2AFF6D9700D5BBEC /* Alertable.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		7A6EFF6D2AFFF8F400E5954F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7A6EFF6E2AFFF90600E5954F /* BookDomain.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -297,7 +327,9 @@
 				7A6D65DD2AFEB10400D5BBEC /* BookDetailViewModel.swift in Sources */,
 				7A6D65B62AFE3D9200D5BBEC /* Coordinator.swift in Sources */,
 				7A6D65BD2AFE3E4000D5BBEC /* BookListCoordinator.swift in Sources */,
+				7A6EFF6F2AFFF90600E5954F /* BookDomain.swift in Sources */,
 				7A6D65E32AFEB6B300D5BBEC /* BookDetail.swift in Sources */,
+				7A6EFF6A2AFFF6DB00E5954F /* BookDetailDomain.swift in Sources */,
 				7A6D65DB2AFEB0FA00D5BBEC /* BookDetailBuilder.swift in Sources */,
 				7A6D65B82AFE3DAE00D5BBEC /* AppContainer.swift in Sources */,
 				7A6D65CD2AFE6A4E00D5BBEC /* BookListView.swift in Sources */,
