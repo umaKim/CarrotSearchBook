@@ -18,6 +18,7 @@ final class BookTableViewCell: UITableViewCell {
     }()
     private lazy var titleLabel: UILabel = {
         let lb = UILabel()
+        lb.textColor = .white
         lb.font = .boldSystemFont(ofSize: 12)
         lb.minimumScaleFactor = 0.5
         lb.numberOfLines = 2
@@ -25,6 +26,7 @@ final class BookTableViewCell: UITableViewCell {
     }()
     private lazy var subtitleLabel: UILabel = {
         let lb = UILabel()
+        lb.textColor = .white
         lb.font = .systemFont(ofSize: 8)
         lb.minimumScaleFactor = 0.5
         lb.numberOfLines = 2
@@ -32,6 +34,7 @@ final class BookTableViewCell: UITableViewCell {
     }()
     private lazy var isbn13Label: UILabel = {
        let label = UILabel()
+        label.textColor = .white
         label.font = .systemFont(ofSize: 8)
         label.minimumScaleFactor = 0.5
         label.numberOfLines = 1
@@ -39,6 +42,7 @@ final class BookTableViewCell: UITableViewCell {
     }()
     private lazy var priceLabel: UILabel = {
         let label = UILabel()
+        label.textColor = .white
         label.font = .systemFont(ofSize: 12)
         label.minimumScaleFactor = 0.5
         label.setContentHuggingPriority(.defaultHigh, for: .horizontal)
@@ -47,6 +51,7 @@ final class BookTableViewCell: UITableViewCell {
     }()
     private lazy var urlLabel: UILabel = {
         let label = UILabel()
+        label.textColor = .white
         label.font = .systemFont(ofSize: 8)
         label.minimumScaleFactor = 0.5
         return label

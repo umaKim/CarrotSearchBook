@@ -26,6 +26,7 @@ final class BookListView: UIView {
         )
         tableView.rowHeight = 100
         tableView.keyboardDismissMode = .onDrag
+        tableView.backgroundColor = .black
         return tableView
     }()
     
@@ -63,6 +64,7 @@ extension BookListView {
     private func setupSearchController() {
         searchController.searchBar.placeholder = "Search Book"
         searchController.searchBar.delegate = self
+        searchController.searchBar.barStyle = .black
     }
 }
 

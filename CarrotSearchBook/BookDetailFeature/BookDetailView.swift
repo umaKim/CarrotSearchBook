@@ -33,78 +33,91 @@ final class BookDetailView: UIView {
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
+        label.textColor = .white
         label.numberOfLines = 0
         return label
     }()
     
     private lazy var subtitleLabel: UILabel = {
         let label = UILabel()
+        label.textColor = .white
         label.numberOfLines = 0
         return label
     }()
     
     private lazy var authorsLabel: UILabel = {
         let label = UILabel()
+        label.textColor = .white
         label.numberOfLines = 0
         return label
     }()
     
     private lazy var publisherLabel: UILabel = {
         let label = UILabel()
+        label.textColor = .white
         label.numberOfLines = 0
         return label
     }()
     
     private lazy var languageLabel: UILabel = {
         let label = UILabel()
+        label.textColor = .white
         label.numberOfLines = 0
         return label
     }()
     
     private lazy var isbn10Label: UILabel = {
         let label = UILabel()
+        label.textColor = .white
         label.numberOfLines = 0
         return label
     }()
     
     private lazy var isbn13Label: UILabel = {
         let label = UILabel()
+        label.textColor = .white
         label.numberOfLines = 0
         return label
     }()
     
     private lazy var pagesLabel: UILabel = {
         let label = UILabel()
+        label.textColor = .white
         label.numberOfLines = 0
         return label
     }()
     
     private lazy var yearLabel: UILabel = {
         let label = UILabel()
+        label.textColor = .white
         label.numberOfLines = 0
         return label
     }()
     
     private lazy var ratingLabel: UILabel = {
         let label = UILabel()
+        label.textColor = .white
         label.numberOfLines = 0
         return label
     }()
     
     private lazy var descLabel: UILabel = {
         let label = UILabel()
+        label.textColor = .white
         label.numberOfLines = 0
         return label
     }()
     
     private lazy var priceLabel: UILabel = {
         let label = UILabel()
+        label.textColor = .white
         label.numberOfLines = 0
         return label
     }()
     
     private lazy var urlLabel: UILabel = {
         let label = UILabel()
+        label.textColor = .white
         label.numberOfLines = 0
         return label
     }()
