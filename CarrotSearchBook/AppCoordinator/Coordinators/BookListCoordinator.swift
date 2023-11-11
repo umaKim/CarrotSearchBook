@@ -49,7 +49,6 @@ final class BookListCoordinator: Coordinator {
                 case .pop: 
                     self?.pop()
                     self?.didFinishSubject.send()
-                    break
                 }
             }
             .store(in: &cancellables)
