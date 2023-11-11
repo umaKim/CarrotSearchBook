@@ -38,9 +38,9 @@ final class BookDetailViewModel {
     private(set) lazy var listenPublisher = listenSubject.eraseToAnyPublisher()
     private let listenSubject = PassthroughSubject<BookDetailViewModelListenerType, Never>()
     
-    private let repository: BookDetailRepository
     private(set) var bookDetail: BookDetailDomain?
     
+    private let repository: BookDetailRepository
     private let isbn: String
     
     init(_ repository: BookDetailRepository, isbn: String) {
@@ -54,8 +54,7 @@ final class BookDetailViewModel {
         listenSubject.send(.isLoading(true))
         Task { @MainActor in
             do {
-                let bookDetail = try await repository.fetchBookDetail(of: isbn)
-                self.bookDetail = bookDetail
+                bookDetail = try await repository.fetchBookDetail(of: isbn)
                 listenSubject.send(.updateData)
             } catch {
                 listenSubject.send(.message("Error", error.localizedDescription))
