@@ -11,6 +11,7 @@ import Combine
 enum BookListViewModelListenerType {
     case update
     case loading(Bool)
+    case message(String, String)
 }
 
 final class BookListViewModel {
@@ -53,6 +54,7 @@ final class BookListViewModel {
             } else {
                 self.books += bookResponse.books
                 self.currentPage += 1
+                self.listenSubject.send(.message("Error", error.localizedDescription))
             }
             self.isLoading = false
             listenSubject.send(.loading(false))

@@ -50,7 +50,7 @@ extension BookListViewController {
 }
 
 //MARK: - Binding
-extension BookListViewController: LoadingShowable {
+extension BookListViewController: LoadingShowable, Alertable {
     // view -> ViewController
     private func bindViewToViewController() {
         contentView
@@ -74,10 +74,13 @@ extension BookListViewController: LoadingShowable {
                     self.updateData()
                 case .loading(let isLoading):
                     isLoading ? showLoadingView() : hideLoadingView()
+                case .message(let title, let message):
+                    self.showDefaultAlert(title: title, message: message)
                 }
             }
             .store(in: &cancellables)
     }
+    
 }
 
 //MARK: - UIScrollViewDelegate
