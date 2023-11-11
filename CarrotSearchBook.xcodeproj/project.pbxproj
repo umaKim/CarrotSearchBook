@@ -111,7 +111,7 @@
 				7A6D65B42AFE3D7E00D5BBEC /* AppCoordinator */,
 				7A6D65C52AFE6A1000D5BBEC /* BookListFeature */,
 				7A6D65D92AFEB0E500D5BBEC /* BookDetailFeature */,
-				7A6D65CE2AFE7A7500D5BBEC /* Models */,
+				7A6D65CE2AFE7A7500D5BBEC /* Entities */,
 				7A6D65A92AFE376900D5BBEC /* Assets.xcassets */,
 				7A6D65AB2AFE376900D5BBEC /* LaunchScreen.storyboard */,
 				7A6D65AE2AFE376900D5BBEC /* Info.plist */,
@@ -159,13 +159,13 @@
 			path = BookListFeature;
 			sourceTree = "<group>";
 		};
-		7A6D65CE2AFE7A7500D5BBEC /* Models */ = {
+		7A6D65CE2AFE7A7500D5BBEC /* Entities */ = {
 			isa = PBXGroup;
 			children = (
 				7A6D65CF2AFE7AAA00D5BBEC /* Book.swift */,
 				7A6D65E22AFEB6B300D5BBEC /* BookDetail.swift */,
 			);
-			path = Models;
+			path = Entities;
 			sourceTree = "<group>";
 		};
 		7A6D65D32AFE80D100D5BBEC /* SubViews */ = {
