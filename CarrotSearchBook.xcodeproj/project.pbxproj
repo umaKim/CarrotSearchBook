@@ -39,6 +39,8 @@
 		7A6EFF6F2AFFF90600E5954F /* BookDomain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6EFF6E2AFFF90600E5954F /* BookDomain.swift */; };
 		7A6EFF772B0005C600E5954F /* BookListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6EFF762B0005C600E5954F /* BookListViewModelTests.swift */; };
 		7A6EFF812B000AF600E5954F /* MockBookListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6EFF802B000AF600E5954F /* MockBookListRepository.swift */; };
+		7A6EFF852B000CA300E5954F /* BookDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6EFF842B000CA300E5954F /* BookDetailViewModelTests.swift */; };
+		7A6EFF872B000CB500E5954F /* MockBookDetailRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6EFF862B000CB500E5954F /* MockBookDetailRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +89,8 @@
 		7A6EFF742B0005C600E5954F /* CarrotSearchBookTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CarrotSearchBookTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A6EFF762B0005C600E5954F /* BookListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookListViewModelTests.swift; sourceTree = "<group>"; };
 		7A6EFF802B000AF600E5954F /* MockBookListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockBookListRepository.swift; sourceTree = "<group>"; };
+		7A6EFF842B000CA300E5954F /* BookDetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailViewModelTests.swift; sourceTree = "<group>"; };
+		7A6EFF862B000CB500E5954F /* MockBookDetailRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockBookDetailRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -271,6 +275,7 @@
 			isa = PBXGroup;
 			children = (
 				7A6EFF762B0005C600E5954F /* BookListViewModelTests.swift */,
+				7A6EFF842B000CA300E5954F /* BookDetailViewModelTests.swift */,
 				7A6EFF7F2B000AF100E5954F /* Mocks */,
 			);
 			path = CarrotSearchBookTests;
@@ -280,6 +285,7 @@
 			isa = PBXGroup;
 			children = (
 				7A6EFF802B000AF600E5954F /* MockBookListRepository.swift */,
+				7A6EFF862B000CB500E5954F /* MockBookDetailRepository.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -419,7 +425,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7A6EFF7E2B00078E00E5954F /* BookListDataMock.swift in Sources */,
 				7A6EFF772B0005C600E5954F /* BookListViewModelTests.swift in Sources */,
+				7A6EFF852B000CA300E5954F /* BookDetailViewModelTests.swift in Sources */,
 				7A6EFF812B000AF600E5954F /* MockBookListRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
