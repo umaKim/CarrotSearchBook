@@ -26,8 +26,8 @@ final class BookDetailView: UIView {
     private lazy var bookImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
-        imageView.widthAnchor.constraint(equalToConstant: 200).isActive = true
-        imageView.heightAnchor.constraint(equalToConstant: 200).isActive = true
+        imageView.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        imageView.heightAnchor.constraint(equalToConstant: 100).isActive = true
         return imageView
     }()
     
@@ -55,6 +55,60 @@ final class BookDetailView: UIView {
         return label
     }()
     
+    private lazy var languageLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        return label
+    }()
+    
+    private lazy var isbn10Label: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        return label
+    }()
+    
+    private lazy var isbn13Label: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        return label
+    }()
+    
+    private lazy var pagesLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        return label
+    }()
+    
+    private lazy var yearLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        return label
+    }()
+    
+    private lazy var ratingLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        return label
+    }()
+    
+    private lazy var descLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        return label
+    }()
+    
+    private lazy var priceLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        return label
+    }()
+    
+    private lazy var urlLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        return label
+    }()
+    
     init() {
         super.init(frame: .zero)
         setupUI()
@@ -64,13 +118,22 @@ final class BookDetailView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(with data: BookDetail?) {
+    func configure(with data: BookDetailDomain?) {
         guard let data else { return }
         bookImageView.downloaded(from: data.image)
         titleLabel.text = data.title
         subtitleLabel.text = data.subtitle
         authorsLabel.text = data.authors
         publisherLabel.text = data.publisher
+        languageLabel.text = data.language
+        isbn10Label.text = data.isbn10
+        isbn13Label.text = data.isbn13
+        pagesLabel.text = data.pages
+        yearLabel.text = data.year
+        ratingLabel.text = data.rating
+        descLabel.text = data.desc
+        priceLabel.text = data.price
+        urlLabel.text = data.url
     }
 }
 
@@ -82,7 +145,16 @@ extension BookDetailView {
             titleLabel,
             subtitleLabel,
             authorsLabel,
-            publisherLabel
+            publisherLabel,
+            languageLabel,
+            isbn10Label,
+            isbn13Label,
+            pagesLabel,
+            yearLabel,
+            ratingLabel,
+            descLabel,
+            priceLabel,
+            urlLabel
         ])
         labelStackView.axis = .vertical
         labelStackView.distribution = .fillProportionally
@@ -94,7 +166,7 @@ extension BookDetailView {
             labelStackView
         ])
         totalStackView.axis = .vertical
-        totalStackView.distribution = .fillEqually
+        totalStackView.distribution = .fill
         totalStackView.alignment = .center
         totalStackView.spacing = 8
         
@@ -106,7 +178,8 @@ extension BookDetailView {
         NSLayoutConstraint.activate([
             totalStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             totalStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            totalStackView.centerYAnchor.constraint(equalTo: centerYAnchor)
+            totalStackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            totalStackView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
         ])
     }
 }
