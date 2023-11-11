@@ -8,7 +8,7 @@
 import UIKit
 
 extension UIImageView {
-    private static let cache = NSCache<NSString, UIImage>()
+     static let cache = NSCache<NSString, UIImage>()
     
     private func cacheImageSetter(with link: String, and image: UIImage) {
         let cacheKey = NSString(string: link)

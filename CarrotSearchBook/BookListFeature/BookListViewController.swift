@@ -54,10 +54,14 @@ extension BookListViewController: Alertable {
     // view -> ViewController
     private func bindViewToViewController() {
         contentView
-            .publisher.sink { action in
+            .publisher
+            .sink {[weak self] action in
+                guard let self else { return }
                 switch action {
                 case .searchButtonClicked(let query):
-                    self.viewModel.updateQuery(query)
+                    self.viewModel.updateQuery(query) {
+                        UIImageView.cache.removeAllObjects()
+                    }
                 }
             }
             .store(in: &cancellables)

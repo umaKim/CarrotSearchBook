@@ -35,11 +35,12 @@ final class BookListViewModel {
     
     private var query: String = ""
     
-    func updateQuery(_ title: String) {
+    func updateQuery(_ title: String, completion: @escaping () -> Void) {
         if title == query { return }
         resetData()
         self.query = title
         self.fetchBooks()
+        completion()
     }
     
     private func resetData() {
