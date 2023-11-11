@@ -8,7 +8,7 @@
 import Foundation
 
 protocol BookDetailRepository {
-    func fetchBookDetail(of isbn: String) async throws -> BookDetail
+    func fetchBookDetail(of isbn: String) async throws -> BookDetailDomain
 }
 
 final class BookDetailRepositoryImp: BookDetailRepository {
@@ -18,7 +18,27 @@ final class BookDetailRepositoryImp: BookDetailRepository {
         self.network = network
     }
     
-    func fetchBookDetail(of isbn: String) async throws -> BookDetail {
-        try await network.fetchBookDetails(of: isbn)
+    func fetchBookDetail(of isbn: String) async throws -> BookDetailDomain {
+        do {
+            let bookDetail = try await network.fetchBookDetails(of: isbn)
+            return .init(
+                title: "Title: \(bookDetail.title ?? "")",
+                subtitle: "Subtitle: \(bookDetail.subtitle ?? "")",
+                authors: "Author: \(bookDetail.authors ?? "")",
+                publisher: "Publisher: \(bookDetail.publisher ?? "")",
+                language: "Language: \(bookDetail.language ?? "")",
+                isbn10: "isbn10: \(bookDetail.isbn10 ?? "")",
+                isbn13: "isbn13: \(bookDetail.isbn13 ?? "")",
+                pages: "Pages: \(bookDetail.pages ?? "")",
+                year: "Year: \(bookDetail.year ?? "")",
+                rating: "Rating: \(bookDetail.rating ?? "")",
+                desc: "Description: \(bookDetail.desc ?? "")",
+                price: "Price: \(bookDetail.price ?? "")",
+                image: bookDetail.image,
+                url: "URL: \(bookDetail.url ?? "")"
+            )
+        } catch {
+            throw error
+        }
     }
 }

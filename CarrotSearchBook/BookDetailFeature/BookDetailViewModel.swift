@@ -14,6 +14,23 @@ enum BookDetailViewModelListenerType {
     case message(String, String)
 }
 
+struct BookDetailDomain {
+    let title: String?
+    let subtitle: String?
+    let authors: String?
+    let publisher: String?
+    let language: String?
+    let isbn10: String?
+    let isbn13: String?
+    let pages: String?
+    let year: String?
+    let rating: String?
+    let desc: String?
+    let price: String?
+    let image: String?
+    let url: String?
+}
+
 final class BookDetailViewModel {
     private(set) lazy var transitionPublisher   = transitionSubject.eraseToAnyPublisher()
     private let transitionSubject               = PassthroughSubject<BookDetailTransition, Never>()
@@ -22,6 +39,7 @@ final class BookDetailViewModel {
     private let listenSubject = PassthroughSubject<BookDetailViewModelListenerType, Never>()
     
     private let repository: BookDetailRepository
+    private(set) var bookDetail: BookDetailDomain?
     
     private let isbn: String
     
@@ -45,8 +63,6 @@ final class BookDetailViewModel {
             listenSubject.send(.isLoading(false))
         }
     }
-    
-    private(set) var bookDetail: BookDetail?
     
     func pop() {
         transitionSubject.send(.pop)
