@@ -73,7 +73,7 @@ final class BookTableViewCell: UITableViewCell {
 }
 
 extension BookTableViewCell {
-    func configure(with book: Book) {
+    func configure(with book: BookDomain) {
         bookImageView.downloaded(from: book.image, contentMode: .scaleToFill)
         titleLabel.text = book.title
         subtitleLabel.text = book.subtitle

@@ -9,8 +9,8 @@ import Combine
 import UIKit
 
 final class BookListViewController: UIViewController {
-    private typealias DataSource    = UITableViewDiffableDataSource<Section, Book>
-    private typealias Snapshot      = NSDiffableDataSourceSnapshot<Section, Book>
+    private typealias DataSource    = UITableViewDiffableDataSource<Section, BookDomain>
+    private typealias Snapshot      = NSDiffableDataSourceSnapshot<Section, BookDomain>
     
     enum Section { case main }
     

@@ -21,7 +21,7 @@ final class BookListViewModel {
     private(set) lazy var listenPublisher = listenSubject.eraseToAnyPublisher()
     private let listenSubject = PassthroughSubject<BookListViewModelListenerType, Never>()
     
-    private(set) var books: [Book] = []
+    private(set) var books: [BookDomain] = []
     
     private let repository: BookListRepository
     
