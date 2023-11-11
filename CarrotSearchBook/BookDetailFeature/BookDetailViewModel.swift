@@ -14,14 +14,27 @@ enum BookDetailViewModelListenerType {
     case message(String, String)
 }
 
-final class BookDetailViewModel {
+protocol BookDetailViewModelInput {
+    func viewDidLoad()
+    func pop()
+}
+
+protocol BookDetailViewModelOutput {
+    var listenPublisher: AnyPublisher<BookDetailViewModelListenerType, Never> { get }
+    var bookDetail: BookDetailDomain? { get set }
+}
+
+typealias BookDetailViewModelProtocol = BookDetailViewModelInput & BookDetailViewModelOutput
+
+final class BookDetailViewModel: BookDetailViewModelProtocol {
+    
     private(set) lazy var transitionPublisher   = transitionSubject.eraseToAnyPublisher()
     private let transitionSubject               = PassthroughSubject<BookDetailTransition, Never>()
     
     private(set) lazy var listenPublisher = listenSubject.eraseToAnyPublisher()
     private let listenSubject = PassthroughSubject<BookDetailViewModelListenerType, Never>()
     
-    private(set) var bookDetail: BookDetailDomain?
+    var bookDetail: BookDetailDomain?
     
     private let repository: BookDetailRepository
     private let isbn: String
@@ -29,8 +42,6 @@ final class BookDetailViewModel {
     init(_ repository: BookDetailRepository, isbn: String) {
         self.repository = repository
         self.isbn = isbn
-        
-        fetch()
     }
     
     private func fetch() {
@@ -44,6 +55,10 @@ final class BookDetailViewModel {
             }
             listenSubject.send(.isLoading(false))
         }
+    }
+    
+    func viewDidLoad() {
+        fetch()
     }
     
     func pop() {

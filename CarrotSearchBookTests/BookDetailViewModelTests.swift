@@ -10,7 +10,7 @@ import XCTest
 @testable import CarrotSearchBook
 
 class BookDetailViewModelTests: XCTestCase {
-    var viewModel: BookDetailViewModel!
+    var viewModel: BookDetailViewModelProtocol!
     var mockRepository: MockBookDetailRepository!
     var cancellables: Set<AnyCancellable>!
 
@@ -41,7 +41,7 @@ class BookDetailViewModelTests: XCTestCase {
             }
         }.store(in: &cancellables)
 
-        viewModel.fetch()
+        viewModel.viewDidLoad()
         wait(for: [expectation], timeout: 5.0)
     }
 
@@ -56,7 +56,7 @@ class BookDetailViewModelTests: XCTestCase {
             }
         }.store(in: &cancellables)
 
-        viewModel.fetch()
+        viewModel.viewDidLoad()
         wait(for: [expectation], timeout: 5.0)
     }
 

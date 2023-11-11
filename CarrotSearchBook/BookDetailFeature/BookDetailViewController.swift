@@ -11,11 +11,11 @@ import UIKit
 final class BookDetailViewController: UIViewController, LoadingShowable {
     private let contentView = BookDetailView()
     
-    private let viewModel: BookDetailViewModel
+    private let viewModel: BookDetailViewModelProtocol
     
     private var cancellables: Set<AnyCancellable>
     
-    init(of viewModel: BookDetailViewModel) {
+    init(of viewModel: BookDetailViewModelProtocol) {
         self.viewModel = viewModel
         self.cancellables = .init()
         super.init(nibName: nil, bundle: nil)
@@ -33,6 +33,7 @@ final class BookDetailViewController: UIViewController, LoadingShowable {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.leftBarButtonItem = contentView.popButton
+        viewModel.viewDidLoad()
         bindViewToViewController()
         bindViewModelToViewController()
     }
