@@ -12,8 +12,8 @@ final class BookTableViewCell: UITableViewCell {
     
     private lazy var bookImageView: UIImageView = {
         let uv = UIImageView()
-        uv.widthAnchor.constraint(equalToConstant: 60).isActive = true
-        uv.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        uv.contentMode = .scaleAspectFit
+        uv.widthAnchor.constraint(equalToConstant: 70).isActive = true
         return uv
     }()
     private lazy var titleLabel: UILabel = {
@@ -27,7 +27,7 @@ final class BookTableViewCell: UITableViewCell {
         let lb = UILabel()
         lb.font = .systemFont(ofSize: 8)
         lb.minimumScaleFactor = 0.5
-        lb.numberOfLines = 0
+        lb.numberOfLines = 2
         return lb
     }()
     private lazy var isbn13Label: UILabel = {
@@ -39,6 +39,12 @@ final class BookTableViewCell: UITableViewCell {
     }()
     private lazy var priceLabel: UILabel = {
         let label = UILabel()
+        label.font = .systemFont(ofSize: 12)
+        label.minimumScaleFactor = 0.5
+        label.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        label.setContentCompressionResistancePriority(.required, for: .horizontal)
+        return label
+    }()
     private lazy var urlLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 8)
@@ -87,28 +93,22 @@ extension BookTableViewCell {
         titlesStackView.alignment = .leading
         titlesStackView.distribution = .fillProportionally
         
-        let imageTitlesStackView = UIStackView(arrangedSubviews: [bookImageView, titlesStackView])
+        let imageTitlesStackView = UIStackView(arrangedSubviews: [bookImageView, titlesStackView, priceLabel])
         imageTitlesStackView.axis = .horizontal
         imageTitlesStackView.alignment = .fill
         imageTitlesStackView.distribution = .fill
         imageTitlesStackView.spacing = 8
         
-        let totalStackView = UIStackView(arrangedSubviews: [imageTitlesStackView, priceLabel])
-        totalStackView.axis = .horizontal
-        totalStackView.alignment = .center
-        totalStackView.distribution = .fill
-        totalStackView.spacing = 8
-        
-        [totalStackView].forEach { uv in
+        [imageTitlesStackView].forEach { uv in
             addSubview(uv)
             uv.translatesAutoresizingMaskIntoConstraints = false
         }
         
         NSLayoutConstraint.activate([
-            totalStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            totalStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            totalStackView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            totalStackView.topAnchor.constraint(equalTo: topAnchor)
+            imageTitlesStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            imageTitlesStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            imageTitlesStackView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            imageTitlesStackView.topAnchor.constraint(equalTo: topAnchor)
         ])
     }
 }
