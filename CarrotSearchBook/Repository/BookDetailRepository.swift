@@ -12,7 +12,6 @@ protocol BookDetailRepository {
 }
 
 final class BookDetailRepositoryImp: BookDetailRepository {
-  
     private let network: BookDetailNetworkable
     
     init(network: BookDetailNetworkable) {

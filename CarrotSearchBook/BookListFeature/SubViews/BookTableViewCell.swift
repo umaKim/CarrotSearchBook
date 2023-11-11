@@ -12,7 +12,6 @@ final class BookTableViewCell: UITableViewCell {
     
     private lazy var bookImageView: UIImageView = {
         let uv = UIImageView()
-        uv.backgroundColor = .red
         uv.widthAnchor.constraint(equalToConstant: 60).isActive = true
         uv.heightAnchor.constraint(equalToConstant: 60).isActive = true
         return uv
