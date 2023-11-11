@@ -30,8 +30,19 @@ final class BookTableViewCell: UITableViewCell {
         lb.numberOfLines = 0
         return lb
     }()
+    private lazy var isbn13Label: UILabel = {
+       let label = UILabel()
+        label.font = .systemFont(ofSize: 8)
+        label.minimumScaleFactor = 0.5
+        label.numberOfLines = 1
+        return label
+    }()
     private lazy var priceLabel: UILabel = {
         let label = UILabel()
+    private lazy var urlLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 8)
+        label.minimumScaleFactor = 0.5
         return label
     }()
     
@@ -52,7 +63,9 @@ final class BookTableViewCell: UITableViewCell {
         bookImageView.image = nil
         titleLabel.text = nil
         subtitleLabel.text = nil
+        isbn13Label.text = nil
         priceLabel.text = nil
+        urlLabel.text = nil
     }
 }
 
@@ -61,13 +74,15 @@ extension BookTableViewCell {
         bookImageView.downloaded(from: book.image, contentMode: .scaleToFill)
         titleLabel.text = book.title
         subtitleLabel.text = book.subtitle
+        isbn13Label.text = book.isbn13
         priceLabel.text = book.price
+        urlLabel.text = book.url
     }
 }
 
 extension BookTableViewCell {
     private func setupUI() {
-        let titlesStackView = UIStackView(arrangedSubviews: [titleLabel, subtitleLabel])
+        let titlesStackView = UIStackView(arrangedSubviews: [titleLabel, subtitleLabel, isbn13Label, urlLabel])
         titlesStackView.axis = .vertical
         titlesStackView.alignment = .leading
         titlesStackView.distribution = .fillProportionally
