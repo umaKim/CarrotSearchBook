@@ -23,13 +23,13 @@ final class BookListViewModel {
     
     private(set) var books: [Book] = []
     
-    private let repository: Repository
+    private let repository: BookListRepository
     
     private var currentPage: Int = 1
     private var isLastPageLoaded: Bool = false
     private var isLoading: Bool = false
     
-    init(_ repository: Repository) {
+    init(_ repository: BookListRepository) {
         self.repository = repository
     }
     
