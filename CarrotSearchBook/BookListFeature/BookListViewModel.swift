@@ -72,7 +72,7 @@ final class BookListViewModel {
     }
     
     func moveToBookDetail(_ index: Int) {
-        let isbn = books[index].isbn13
+        guard let isbn = books[index].isbn13 else { return }
         transitionSubject.send(.bookDetail(isbn))
     }
 }

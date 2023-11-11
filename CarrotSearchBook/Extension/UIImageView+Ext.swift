@@ -37,7 +37,8 @@ extension UIImageView {
         }.resume()
     }
     
-    func downloaded(from link: String, contentMode mode: ContentMode = .scaleAspectFit) {
+    func downloaded(from link: String?, contentMode mode: ContentMode = .scaleAspectFit) {
+        guard let link else { return }
         if let image = cacheImageGetter(of: link) {
             self.image = image
             return
