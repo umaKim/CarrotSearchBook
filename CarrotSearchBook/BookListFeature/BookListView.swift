@@ -25,6 +25,7 @@ final class BookListView: UIView {
             forCellReuseIdentifier: BookTableViewCell.identifier
         )
         tableView.rowHeight = 100
+        tableView.keyboardDismissMode = .onDrag
         return tableView
     }()
     
