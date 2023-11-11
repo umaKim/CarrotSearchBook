@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct BookDetailDomain {
+struct BookDetailDomain: Equatable {
     let title: String?
     let subtitle: String?
     let authors: String?
