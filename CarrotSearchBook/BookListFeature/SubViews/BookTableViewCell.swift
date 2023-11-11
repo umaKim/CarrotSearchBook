@@ -47,6 +47,14 @@ final class BookTableViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        bookImageView.image = nil
+        titleLabel.text = nil
+        subtitleLabel.text = nil
+        priceLabel.text = nil
+    }
 }
 
 extension BookTableViewCell {

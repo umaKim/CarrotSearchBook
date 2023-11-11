@@ -32,7 +32,7 @@ final class RepositoryImp: Repository {
         
         do {
             let (data, response) = try await URLSession.shared.data(for: request)
-            let decodedData = try JSONDecoder().decode(BookResponse.self, from: data)
+            let decodedData = try BookResponse.decode(from: data)
             return decodedData
         } catch {
             throw error
@@ -44,7 +44,7 @@ final class RepositoryImp: Repository {
         let request = URLRequest(url: .init(string: urlString)!)
         do {
             let (data, response) = try await URLSession.shared.data(for: request)
-            let decodedData = try JSONDecoder().decode(BookDetail.self, from: data)
+            let decodedData = try BookDetail.decode(from: data)
             return decodedData
         } catch {
             throw error
