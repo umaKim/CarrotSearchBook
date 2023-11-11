@@ -8,9 +8,9 @@
 import Foundation
 
 protocol AppContainer: AnyObject {
-    
+    var network: NetworkManageable { get }
 }
 
 final class AppContainerImplementation: AppContainer {
-    
+    let network: NetworkManageable = NetworkManager()
 }

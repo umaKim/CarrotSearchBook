@@ -15,6 +15,8 @@ protocol BookDetailNetworkable {
     func fetchBookDetails(of isbn: String) async throws -> BookDetail
 }
 
+typealias NetworkManageable = BookListNetworkable & BookDetailNetworkable
+
 final class NetworkManager {
     private enum BookApi {
         static let baseUrl = "https://api.itbook.store/1.0/"

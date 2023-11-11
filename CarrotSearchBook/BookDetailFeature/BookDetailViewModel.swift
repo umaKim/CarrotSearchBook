@@ -16,11 +16,11 @@ final class BookDetailViewModel {
     private(set) lazy var transitionPublisher   = transitionSubject.eraseToAnyPublisher()
     private let transitionSubject               = PassthroughSubject<BookDetailTransition, Never>()
     
-    private let repository: Repository
+    private let repository: BookDetailRepository
     
     private let isbn: String
     
-    init(_ repository: Repository, isbn: String) {
+    init(_ repository: BookDetailRepository, isbn: String) {
         self.repository = repository
         self.isbn = isbn
         

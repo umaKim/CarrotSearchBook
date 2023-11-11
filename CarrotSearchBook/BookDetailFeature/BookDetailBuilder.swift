@@ -13,7 +13,8 @@ enum BookDetailTransition: Transition {
 
 final class BookDetailBuilder {
     class func build(container: AppContainer, isbn: String) -> Module<BookDetailTransition, UIViewController> {
-        let viewModel = BookDetailViewModel(RepositoryImp(), isbn: isbn)
+        let repository = BookDetailRepositoryImp(network: container.network)
+        let viewModel = BookDetailViewModel(repository, isbn: isbn)
         let viewController = BookDetailViewController(of: viewModel)
         return Module(
             viewController: viewController,

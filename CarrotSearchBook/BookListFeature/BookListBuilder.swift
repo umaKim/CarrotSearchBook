@@ -13,7 +13,8 @@ enum BookListTransition: Transition {
 
 final class BookListBuilder {
     class func build(container: AppContainer) -> Module<BookListTransition, UIViewController> {
-        let viewModel = BookListViewModel(RepositoryImp())
+        let repository = BookListRepositoryImp(network: container.network)
+        let viewModel = BookListViewModel(repository)
         let viewController = BookListViewController(of: viewModel)
         return Module(
             viewController: viewController,
