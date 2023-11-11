@@ -21,7 +21,7 @@ protocol BookDetailViewModelInput {
 
 protocol BookDetailViewModelOutput {
     var listenPublisher: AnyPublisher<BookDetailViewModelListenerType, Never> { get }
-    var bookDetail: BookDetailDomain? { get set }
+    var bookDetail: BookDetailDomain? { get }
 }
 
 typealias BookDetailViewModelProtocol = BookDetailViewModelInput & BookDetailViewModelOutput
@@ -34,7 +34,7 @@ final class BookDetailViewModel: BookDetailViewModelProtocol {
     private(set) lazy var listenPublisher = listenSubject.eraseToAnyPublisher()
     private let listenSubject = PassthroughSubject<BookDetailViewModelListenerType, Never>()
     
-    var bookDetail: BookDetailDomain?
+    private(set) var bookDetail: BookDetailDomain?
     
     private let repository: BookDetailRepository
     private let isbn: String
