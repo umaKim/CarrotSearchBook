@@ -34,7 +34,7 @@ final class BookListCoordinator: Coordinator {
                 guard let self else { return }
                 switch transition {
                 case .bookDetail(let isbn):
-                    self?.bookDetail(for: isbn)
+                    self.bookDetail(for: isbn)
                 }
             }
             .store(in: &cancellables)
