@@ -10,7 +10,7 @@ import XCTest
 @testable import CarrotSearchBook
 
 class BookListViewModelTests: XCTestCase {
-    var viewModel: BookListViewModel!
+    var viewModel: BookListViewModelProtocol!
     var mockRepository: MockBookListRepository!
     var cancellables: Set<AnyCancellable>!
 

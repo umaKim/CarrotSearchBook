@@ -17,11 +17,11 @@ final class BookListViewController: UIViewController {
     private let contentView = BookListView()
     private var diffableDataSource: DataSource?
     
-    private let viewModel: BookListViewModel
+    private let viewModel: BookListViewModelProtocol
     
     private var cancellables: Set<AnyCancellable>
     
-    init(of viewModel: BookListViewModel) {
+    init(of viewModel: BookListViewModelProtocol) {
         self.viewModel = viewModel
         self.cancellables = .init()
         super.init(nibName: nil, bundle: nil)

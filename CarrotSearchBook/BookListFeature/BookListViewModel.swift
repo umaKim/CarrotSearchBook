@@ -14,7 +14,20 @@ enum BookListViewModelListenerType {
     case message(String, String)
 }
 
-final class BookListViewModel {
+protocol BookListViewModelInput {
+    func fetchBooks()
+    func moveToBookDetail(_ index: Int)
+    func updateQuery(_ title: String, completion: @escaping () -> Void)
+}
+
+protocol BookListViewModelOutput {
+    var listenPublisher: AnyPublisher<BookListViewModelListenerType, Never> { get }
+    var books: [BookDomain] { get }
+}
+
+typealias BookListViewModelProtocol = BookListViewModelInput & BookListViewModelOutput
+
+final class BookListViewModel: BookListViewModelProtocol {
     private(set) lazy var transitionPublisher   = transitionSubject.eraseToAnyPublisher()
     private let transitionSubject               = PassthroughSubject<BookListTransition, Never>()
     
