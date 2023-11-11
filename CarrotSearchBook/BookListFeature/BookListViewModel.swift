@@ -26,7 +26,8 @@ final class BookListViewModel {
     private let repository: Repository
     
     private var currentPage: Int = 1
-    private var hasMorePages: Bool = true
+    private var isLastPageLoaded: Bool = false
+    private var isLoading: Bool = false
     
     init(_ repository: Repository) {
         self.repository = repository
@@ -34,31 +35,39 @@ final class BookListViewModel {
     
     private var query: String = ""
     
-    private var isLoading: Bool = false
-    
     func updateQuery(_ title: String) {
-        self.currentPage = 1
+        if title == query { return }
+        resetData()
         self.query = title
         self.fetchBooks()
     }
     
+    private func resetData() {
+        books.removeAll()
+        currentPage = 1
+        isLastPageLoaded = false
+    }
+    
     func fetchBooks() {
-        if isLoading || query.isEmpty || !hasMorePages { return }
+        guard !isLoading, !isLastPageLoaded else { return }
         isLoading = true
         listenSubject.send(.loading(true))
         
         Task { @MainActor in
-            let bookResponse = try await repository.fetchBooks(for: query, page: currentPage)
-            if bookResponse.books.isEmpty {
-                self.hasMorePages = false
-            } else {
-                self.books += bookResponse.books
-                self.currentPage += 1
-                self.listenSubject.send(.message("Error", error.localizedDescription))
+            do {
+                let bookResponse = try await repository.fetchBooks(for: query, page: currentPage)
+                if bookResponse.books.isEmpty {
+                    self.isLastPageLoaded = true
+                } else {
+                    self.books += bookResponse.books
+                    self.currentPage += 1
+                }
+                listenSubject.send(.update)
+            } catch {
+                listenSubject.send(.message("Error", error.localizedDescription))
             }
-            self.isLoading = false
+            isLoading = false
             listenSubject.send(.loading(false))
-            self.listenSubject.send(.update)
         }
     }
     
