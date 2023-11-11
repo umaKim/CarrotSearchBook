@@ -31,6 +31,7 @@ final class BookListCoordinator: Coordinator {
         module
             .transitionPublisher
             .sink {[weak self] transition in
+                guard let self else { return }
                 switch transition {
                 case .bookDetail(let isbn):
                     self?.bookDetail(for: isbn)

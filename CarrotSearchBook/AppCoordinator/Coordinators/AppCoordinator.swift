@@ -44,7 +44,8 @@ final class AppCoordinator: Coordinator {
         childCoordinators.append(coordinator)
         coordinator.didFinishPublisher
             .sink {[weak self] in
-            self?.removeChild(coordinator: coordinator)
+                guard let self else { return }
+                self.removeChild(coordinator: coordinator)
         }
         .store(in: &cancellables)
         coordinator.start()

@@ -45,9 +45,10 @@ extension BookDetailViewController: Alertable {
         contentView
             .publisher
             .sink {[weak self] action in
+                guard let self else { return }
                 switch action {
                 case .pop:
-                    self?.viewModel.pop()
+                    self.viewModel.pop()
                 }
             }
             .store(in: &cancellables)
