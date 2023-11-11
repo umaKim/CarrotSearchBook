@@ -75,4 +75,28 @@ class BookListViewModelTests: XCTestCase {
         viewModel.updateQuery("Test", completion: {})
         wait(for: [expectation], timeout: 5.0)
     }
+    
+    func testPaginationFirstAndSecondPage() {
+        let expectation = XCTestExpectation(description: "Fetched first second page of books")
+        
+        viewModel.listenPublisher
+            .dropFirst(2)
+            .sink { [weak self] listenerType in
+                if case .update = listenerType {
+                    XCTAssertEqual(self?.viewModel.books.count, 2, "Total books count should match the first and second page count")
+                    expectation.fulfill()
+                }
+            }.store(in: &cancellables)
+        
+        //get first
+        viewModel.updateQuery("Test", completion: {})
+        
+        //get second
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.mockRepository.mockBooks = [.init(id: UUID(), title: "second page", subtitle: "", isbn13: "", price: "", image: "", url: "")]
+            self.viewModel.fetchBooks()
+        }
+        
+        wait(for: [expectation], timeout: 5.0)
+    }
 }
