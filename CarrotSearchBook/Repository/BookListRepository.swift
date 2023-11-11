@@ -8,7 +8,7 @@
 import Foundation
 
 protocol BookListRepository {
-    func fetchBooks(for title: String, page: Int) async throws -> BookResponse
+    func fetchBooks(for title: String, page: Int) async throws -> BookResponseDomain
 }
 
 final class BookListRepositoryImp: BookListRepository {
@@ -18,7 +18,26 @@ final class BookListRepositoryImp: BookListRepository {
         self.network = network
     }
     
-    func fetchBooks(for title: String, page: Int) async throws -> BookResponse {
-        try await network.fetchBooks(for: title, page: page)
+    func fetchBooks(for title: String, page: Int) async throws -> BookResponseDomain {
+        do {
+            let bookresponse = try await network.fetchBooks(for: title, page: page)
+            return .init(
+                total: bookresponse.total,
+                page: bookresponse.page,
+                books: bookresponse.books.map({
+                    .init(
+                        id: UUID(),
+                        title: $0.title,
+                        subtitle: $0.subtitle,
+                        isbn13: $0.isbn13,
+                        price: $0.price,
+                        image: $0.image,
+                        url: $0.url
+                    )
+                })
+            )
+        } catch {
+            throw error
+        }
     }
 }
