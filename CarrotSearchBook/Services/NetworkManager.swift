@@ -24,6 +24,7 @@ final class NetworkManager {
     
     private enum BookApiError: Error {
         case noDataReturned
+        case invalidResponse
         case invalidUrl
     }
 }
@@ -46,6 +47,10 @@ extension NetworkManager {
         let request = URLRequest(url: url)
         do {
             let (data, response) = try await URLSession.shared.data(for: request)
+            guard 
+                let httpResponse = response as? HTTPURLResponse,
+                httpResponse.statusCode == 200
+            else { throw BookApiError.invalidResponse }
             let decodedData = try T.decode(from: data)
             return decodedData
         } catch {
