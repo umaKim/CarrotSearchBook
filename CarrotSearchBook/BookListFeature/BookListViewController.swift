@@ -50,7 +50,7 @@ extension BookListViewController {
 }
 
 //MARK: - Binding
-extension BookListViewController {
+extension BookListViewController: LoadingShowable {
     // view -> ViewController
     private func bindViewToViewController() {
         contentView
@@ -72,6 +72,8 @@ extension BookListViewController {
                 switch type {
                 case .update:
                     self.updateData()
+                case .loading(let isLoading):
+                    isLoading ? showLoadingView() : hideLoadingView()
                 }
             }
             .store(in: &cancellables)

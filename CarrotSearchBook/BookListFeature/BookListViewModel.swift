@@ -10,6 +10,7 @@ import Combine
 
 enum BookListViewModelListenerType {
     case update
+    case loading(Bool)
 }
 
 final class BookListViewModel {
@@ -43,6 +44,8 @@ final class BookListViewModel {
     func fetchBooks() {
         if isLoading || query.isEmpty || !hasMorePages { return }
         isLoading = true
+        listenSubject.send(.loading(true))
+        
         Task { @MainActor in
             let bookResponse = try await repository.fetchBooks(for: query, page: currentPage)
             if bookResponse.books.isEmpty {
@@ -52,6 +55,7 @@ final class BookListViewModel {
                 self.currentPage += 1
             }
             self.isLoading = false
+            listenSubject.send(.loading(false))
             self.listenSubject.send(.update)
         }
     }

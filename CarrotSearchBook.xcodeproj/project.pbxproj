@@ -30,6 +30,7 @@
 		7A6D65E12AFEB11700D5BBEC /* BookDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6D65E02AFEB11700D5BBEC /* BookDetailView.swift */; };
 		7A6D65E32AFEB6B300D5BBEC /* BookDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6D65E22AFEB6B300D5BBEC /* BookDetail.swift */; };
 		7A6D65E62AFEC6BA00D5BBEC /* UIImageView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6D65E52AFEC6BA00D5BBEC /* UIImageView+Ext.swift */; };
+		7A6D65E82AFF4F1F00D5BBEC /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6D65E72AFF4F1F00D5BBEC /* LoadingView.swift */; };
 		7A6D65EA2AFF564100D5BBEC /* JSONDecoder+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6D65E92AFF564100D5BBEC /* JSONDecoder+Ext.swift */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +60,7 @@
 		7A6D65E02AFEB11700D5BBEC /* BookDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailView.swift; sourceTree = "<group>"; };
 		7A6D65E22AFEB6B300D5BBEC /* BookDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetail.swift; sourceTree = "<group>"; };
 		7A6D65E52AFEC6BA00D5BBEC /* UIImageView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Ext.swift"; sourceTree = "<group>"; };
+		7A6D65E72AFF4F1F00D5BBEC /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		7A6D65E92AFF564100D5BBEC /* JSONDecoder+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONDecoder+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -94,6 +96,7 @@
 			children = (
 				7A6D65A02AFE376700D5BBEC /* AppDelegate.swift */,
 				7A6D65A22AFE376700D5BBEC /* SceneDelegate.swift */,
+				7A6D65E72AFF4F1F00D5BBEC /* LoadingView.swift */,
 				7A6D65E42AFEC6AF00D5BBEC /* Extension */,
 				7A6D65D42AFE8C4100D5BBEC /* Services */,
 				7A6D65C02AFE3ED700D5BBEC /* Module */,
@@ -274,6 +277,7 @@
 				7A6D65BF2AFE3E6600D5BBEC /* BookDetailCoordinator.swift in Sources */,
 				7A6D65BB2AFE3E0000D5BBEC /* AppCoordinator.swift in Sources */,
 				7A6D65D62AFE8C5100D5BBEC /* Repository.swift in Sources */,
+				7A6D65E82AFF4F1F00D5BBEC /* LoadingView.swift in Sources */,
 				7A6D65C72AFE6A2500D5BBEC /* BookListViewController.swift in Sources */,
 				7A6D65EA2AFF564100D5BBEC /* JSONDecoder+Ext.swift in Sources */,
 				7A6D65E12AFEB11700D5BBEC /* BookDetailView.swift in Sources */,
