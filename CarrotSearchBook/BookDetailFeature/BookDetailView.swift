@@ -66,7 +66,7 @@ final class BookDetailView: UIView {
     
     func configure(with data: BookDetail?) {
         guard let data else { return }
-        bookImageView.downloaded(from: data.image!)
+        bookImageView.downloaded(from: data.image)
         titleLabel.text = data.title
         subtitleLabel.text = data.subtitle
         authorsLabel.text = data.authors
