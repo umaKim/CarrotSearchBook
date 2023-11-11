@@ -33,14 +33,13 @@ class BookListViewModelTests: XCTestCase {
 
         viewModel.listenPublisher.sink { [weak self] listenerType in
             if case .update = listenerType {
-                print(self?.viewModel.books)
                 XCTAssertTrue(self?.viewModel.books.count == 1, "Books count should be 1")
                 expectation.fulfill()
             }
         }.store(in: &cancellables)
 
         viewModel.updateQuery("Test", completion: {})
-        wait(for: [expectation], timeout: 500.0)
+        wait(for: [expectation], timeout: 50.0)
     }
 
     func testFetchBooksEmpty() {
