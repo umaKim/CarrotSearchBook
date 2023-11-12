@@ -27,31 +27,41 @@ final class NetworkManager {
         case invalidResponse
         case invalidUrl
     }
+    
+    private enum HTTPMethodType: String {
+        case get     = "GET"
+        case head    = "HEAD"
+        case post    = "POST"
+        case put     = "PUT"
+        case patch   = "PATCH"
+        case delete  = "DELETE"
+    }
 }
 
 extension NetworkManager: BookListNetworkable {
     func fetchBooks(for title: String, page: Int) async throws -> BookResponse {
-        try await request(url: .init(string: "\(BookApi.baseUrl)search/\(title)/\(page)"))
+        try await request(url: .init(string: "\(BookApi.baseUrl)search/\(title)/\(page)"), method: .get)
     }
 }
 
 extension NetworkManager: BookDetailNetworkable {
     func fetchBookDetails(of isbn: String) async throws -> BookDetail {
-        try await request(url: .init(string: "\(BookApi.baseUrl)books/\(isbn)"))
+        try await request(url: .init(string: "\(BookApi.baseUrl)books/\(isbn)"), method: .get)
     }
 }
 
 extension NetworkManager {
-    private func request<T: Decodable>(url: URL?) async throws -> T {
+    private func request<T: Decodable>(url: URL?, method: HTTPMethodType) async throws -> T {
         guard let url else { throw BookApiError.invalidUrl }
-        let request = URLRequest(url: url)
+        var request = URLRequest(url: url)
+        request.httpMethod = method.rawValue
+        
         do {
             let (data, response) = try await URLSession.shared.data(for: request)
             guard 
                 let httpResponse = response as? HTTPURLResponse,
                 httpResponse.statusCode == 200
             else { throw BookApiError.invalidResponse }
-            let str = String(data: data, encoding: .utf8)
             let decodedData = try T.decode(from: data)
             return decodedData
         } catch {
@@ -59,4 +69,3 @@ extension NetworkManager {
         }
     }
 }
-
