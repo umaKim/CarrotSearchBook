@@ -31,8 +31,7 @@ final class NetworkManager {
 
 extension NetworkManager: BookListNetworkable {
     func fetchBooks(for title: String, page: Int) async throws -> BookResponse {
-        let title = "Securing DevOps"
-        return try await request(url: .init(string: "\(BookApi.baseUrl)search/\(title)/\(page)"))
+        try await request(url: .init(string: "\(BookApi.baseUrl)search/\(title)/\(page)"))
     }
 }
 
