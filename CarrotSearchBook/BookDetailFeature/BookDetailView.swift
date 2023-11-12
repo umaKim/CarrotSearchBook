@@ -122,6 +122,14 @@ final class BookDetailView: UIView {
         return label
     }()
     
+    private lazy var pdfLinkContainerView: UIStackView = {
+       let stackView = UIStackView(arrangedSubviews: [])
+        stackView.axis = .vertical
+        stackView.alignment = .leading
+        stackView.distribution = .fillEqually
+        return stackView
+    }()
+    
     init() {
         super.init(frame: .zero)
         setupUI()
@@ -147,6 +155,14 @@ final class BookDetailView: UIView {
         descLabel.text = data.desc
         priceLabel.text = data.price
         urlLabel.text = data.url
+        
+        data.pdf?.forEach({ datum in
+            let label = UILabel()
+            label.textColor = .white
+            label.numberOfLines = 0
+            label.text = "\(datum)"
+            pdfLinkContainerView.addArrangedSubview(label)
+        })
     }
 }
 
@@ -167,7 +183,8 @@ extension BookDetailView {
             ratingLabel,
             descLabel,
             priceLabel,
-            urlLabel
+            urlLabel,
+            pdfLinkContainerView
         ])
         labelStackView.axis = .vertical
         labelStackView.distribution = .fillProportionally

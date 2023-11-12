@@ -31,7 +31,8 @@ final class NetworkManager {
 
 extension NetworkManager: BookListNetworkable {
     func fetchBooks(for title: String, page: Int) async throws -> BookResponse {
-        try await request(url: .init(string: "\(BookApi.baseUrl)search/\(title)/\(page)"))
+        let title = "Securing DevOps"
+        return try await request(url: .init(string: "\(BookApi.baseUrl)search/\(title)/\(page)"))
     }
 }
 
@@ -51,6 +52,7 @@ extension NetworkManager {
                 let httpResponse = response as? HTTPURLResponse,
                 httpResponse.statusCode == 200
             else { throw BookApiError.invalidResponse }
+            let str = String(data: data, encoding: .utf8)
             let decodedData = try T.decode(from: data)
             return decodedData
         } catch {

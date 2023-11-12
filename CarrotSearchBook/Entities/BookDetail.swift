@@ -23,4 +23,5 @@ struct BookDetail: Decodable {
     let price: String?
     let image: String?
     let url: String?
+    let pdf: [String: String]?
 }
