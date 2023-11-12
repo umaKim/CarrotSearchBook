@@ -29,7 +29,7 @@ class BookDetailViewModelTests: XCTestCase {
     }
 
     func testFetchBookDetailSuccess() {
-        let expectedDetail = BookDetailDomain(title: "Title: Test", subtitle: "", authors: "", publisher: "", language: "", isbn10: "", isbn13: "", pages: "", year: "", rating: "", desc: "", price: "", image: "", url: "")
+        let expectedDetail = BookDetailDomain(title: "Title: Test", subtitle: "", authors: "", publisher: "", language: "", isbn10: "", isbn13: "", pages: "", year: "", rating: "", desc: "", price: "", image: "", url: "", pdf: [])
         mockRepository.mockBookDetail = expectedDetail
 
         let expectation = XCTestExpectation(description: "Successfully fetched book detail")
