@@ -27,9 +27,4 @@ final class MockBookListRepository: BookListRepository {
             return BookResponseDomain(total: "\(mockBooks.count)", page: "\(page)", books: mockBooks)
         }
     }
-
-    // Helper method to set mock books data
-    func setMockBooks(_ books: [BookDomain]) {
-        self.mockBooks = books
-    }
 }
