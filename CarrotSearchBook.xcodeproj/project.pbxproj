@@ -429,6 +429,7 @@
 				7A6EFF772B0005C600E5954F /* BookListViewModelTests.swift in Sources */,
 				7A6EFF852B000CA300E5954F /* BookDetailViewModelTests.swift in Sources */,
 				7A6EFF812B000AF600E5954F /* MockBookListRepository.swift in Sources */,
+				7A6EFF872B000CB500E5954F /* MockBookDetailRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
