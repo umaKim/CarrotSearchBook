@@ -49,7 +49,8 @@ final class BookListCoordinator: Coordinator {
         )
         coordinaotr.didFinishPublisher
             .sink { [weak self] in
-                self?.removeChild(coordinator: coordinaotr)
+                guard let self else { return }
+                self.childCoordinators.forEach { self.removeChild(coordinator: $0) }
             }
             .store(in: &cancellables)
         addChild(coordinator: coordinaotr)
