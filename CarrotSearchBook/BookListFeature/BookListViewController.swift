@@ -47,6 +47,11 @@ extension BookListViewController {
         bindViewToViewController()
         bindViewModelToViewController()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        contentView.searchController.searchBar.becomeFirstResponder()
+    }
 }
 
 //MARK: - Binding
