@@ -41,13 +41,13 @@ final class AppCoordinator: Coordinator {
             navigationController: navigationController,
             container: container
         )
-        childCoordinators.append(coordinator)
         coordinator.didFinishPublisher
             .sink {[weak self] in
                 guard let self else { return }
                 self.removeChild(coordinator: coordinator)
         }
         .store(in: &cancellables)
+        addChild(coordinator: coordinator)
         coordinator.start()
     }
 }
