@@ -31,7 +31,9 @@ class BookListViewModelTests: XCTestCase {
     func testFetchBooksSuccess() {
         let expectation = XCTestExpectation(description: "Successfully fetched books")
 
-        viewModel.listenPublisher.sink { [weak self] listenerType in
+        viewModel
+            .listenPublisher
+            .sink { [weak self] listenerType in
             if case .update = listenerType {
                 XCTAssertTrue(self?.viewModel.books.count == 1, "Books count should be 1")
                 expectation.fulfill()
@@ -105,7 +107,9 @@ class BookListViewModelTests: XCTestCase {
         
         self.viewModel.fetchBooks()
         
-        viewModel.transitionPublisher.sink { transition in
+        viewModel
+            .transitionPublisher
+            .sink { transition in
             switch transition {
             case .bookDetail(let isbn):
                 XCTAssertEqual(isbn, "123")

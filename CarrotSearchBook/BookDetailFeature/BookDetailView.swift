@@ -131,6 +131,7 @@ final class BookDetailView: UIView {
     
     private lazy var urlButton: UIButton = {
         let button = UIButton()
+        button.setTitleColor(.tintColor, for: .normal)
         button.heightAnchor.constraint(equalToConstant: 50).isActive = true
         button.addTarget(self, action: #selector(urlButtonDidTap), for: .touchUpInside)
         return button
@@ -145,7 +146,7 @@ final class BookDetailView: UIView {
     private lazy var pdfLinkContainerView: UIStackView = {
        let stackView = UIStackView(arrangedSubviews: [])
         stackView.axis = .vertical
-        stackView.alignment = .leading
+        stackView.alignment = .center
         stackView.distribution = .fillEqually
         return stackView
     }()
@@ -184,16 +185,22 @@ final class BookDetailView: UIView {
     private var pdfUrls: [String] = []
     
     private func configurePdfLinkButton(with data: BookDetailDomain?) {
-        data?.pdf?.reversed().forEach({ (chapter, url) in
-            let button = UIButton(type: .system)
-            button.setTitle("\(chapter) Link", for: .normal)
-            button.setTitleColor(.white, for: .normal)
-            button.contentHorizontalAlignment = .left
-            button.addTarget(self, action: #selector(pdfButtonTapped(_:)), for: .touchUpInside)
+        pdfUrls = []
+        data?.pdf?.forEach { (chapter, url) in
+            let button = createPDFButton(chapter: chapter, url: url)
             button.tag = pdfUrls.count
             pdfUrls.append(url)
             pdfLinkContainerView.addArrangedSubview(button)
-        })
+        }
+    }
+    
+    private func createPDFButton(chapter: String, url: String) -> UIButton {
+        let button = UIButton(type: .system)
+        button.setTitle("\(chapter) Link", for: .normal)
+        button.setTitleColor(.tintColor, for: .normal)
+        button.contentHorizontalAlignment = .left
+        button.addTarget(self, action: #selector(pdfButtonTapped(_:)), for: .touchUpInside)
+        return button
     }
     
     @objc

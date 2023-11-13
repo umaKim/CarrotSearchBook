@@ -29,7 +29,6 @@ protocol BookDetailViewModelOutput {
 typealias BookDetailViewModelProtocol = BookDetailViewModelInput & BookDetailViewModelOutput
 
 final class BookDetailViewModel: BookDetailViewModelProtocol {
-    
     private(set) lazy var transitionPublisher   = transitionSubject.eraseToAnyPublisher()
     private let transitionSubject               = PassthroughSubject<BookDetailTransition, Never>()
     
@@ -45,8 +44,24 @@ final class BookDetailViewModel: BookDetailViewModelProtocol {
         self.repository = repository
         self.isbn = isbn
     }
+}
+
+extension BookDetailViewModel {
+    func viewDidLoad() {
+        fetchBookDetail()
+    }
     
-    private func fetch() {
+    func pop() {
+        transitionSubject.send(.pop)
+    }
+    
+    func moveToLink(_ link: String) {
+        transitionSubject.send(.moveToLink(link))
+    }
+}
+
+extension BookDetailViewModel {
+    private func fetchBookDetail() {
         listenSubject.send(.isLoading(true))
         Task { @MainActor in
             do {
@@ -57,17 +72,5 @@ final class BookDetailViewModel: BookDetailViewModelProtocol {
             }
             listenSubject.send(.isLoading(false))
         }
-    }
-    
-    func viewDidLoad() {
-        fetch()
-    }
-    
-    func pop() {
-        transitionSubject.send(.pop)
-    }
-    
-    func moveToLink(_ link: String) {
-        transitionSubject.send(.moveToLink(link))
     }
 }

@@ -44,8 +44,7 @@ extension BookListViewController {
         navigationItem.searchController = contentView.searchController
         contentView.tableView.delegate = self
         setupTableViewDataSource()
-        bindViewToViewController()
-        bindViewModelToViewController()
+        bind()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -56,6 +55,11 @@ extension BookListViewController {
 
 //MARK: - Binding
 extension BookListViewController: Alertable {
+    private func bind() {
+        bindViewToViewController()
+        bindViewModelToViewController()
+    }
+    
     // view -> ViewController
     private func bindViewToViewController() {
         contentView

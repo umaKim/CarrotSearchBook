@@ -24,7 +24,10 @@ final class BookDetailViewController: UIViewController, LoadingShowable {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+}
+
+//MARK: - Life Cycle
+extension BookDetailViewController {
     override func loadView() {
         super.loadView()
         view = contentView
@@ -34,44 +37,40 @@ final class BookDetailViewController: UIViewController, LoadingShowable {
         super.viewDidLoad()
         navigationItem.leftBarButtonItem = contentView.popButton
         viewModel.viewDidLoad()
-        bindViewToViewController()
-        bindViewModelToViewController()
+        bind()
     }
 }
 
 //MARK: - Binding
 extension BookDetailViewController: Alertable {
-    // view -> ViewController
-    private func bindViewToViewController() {
-        contentView
-            .publisher
-            .sink {[weak self] action in
-                guard let self else { return }
-                switch action {
-                case .pop:
-                    self.viewModel.pop()
-                case .moveToLink(let link):
-                    self.viewModel.moveToLink(link)
-                }
-            }
-            .store(in: &cancellables)
+    private func bind() {
+        bindViewToViewModel()
+        bindViewModelToView()
     }
     
-    //ViewModel -> ViewController
-    private func bindViewModelToViewController() {
-        viewModel
-            .listenPublisher
-            .sink {[weak self] type in
-                guard let self else { return }
-                switch type {
-                case .isLoading(let isLoading):
-                    isLoading ? showLoadingView() : hideLoadingView()
-                case .updateData:
-                    self.contentView.configure(with: viewModel.bookDetail)
-                case .message(let title, let message):
-                    self.showDefaultAlert(title: title, message: message)
-                }
+    private func bindViewToViewModel() {
+        contentView.publisher.sink { [weak self] action in
+            guard let self = self else { return }
+            switch action {
+            case .pop:
+                self.viewModel.pop()
+            case .moveToLink(let link):
+                self.viewModel.moveToLink(link)
             }
-            .store(in: &cancellables)
+        }.store(in: &cancellables)
+    }
+    
+    private func bindViewModelToView() {
+        viewModel.listenPublisher.sink { [weak self] type in
+            guard let self = self else { return }
+            switch type {
+            case .isLoading(let isLoading):
+                isLoading ? self.showLoadingView() : self.hideLoadingView()
+            case .updateData:
+                self.contentView.configure(with: self.viewModel.bookDetail)
+            case .message(let title, let message):
+                self.showDefaultAlert(title: title, message: message)
+            }
+        }.store(in: &cancellables)
     }
 }

@@ -49,7 +49,9 @@ class BookDetailViewModelTests: XCTestCase {
         mockRepository.shouldReturnError = true
         let expectation = XCTestExpectation(description: "Error in fetching book detail")
 
-        viewModel.listenPublisher.sink { listenerType in
+        viewModel
+            .listenPublisher
+            .sink { listenerType in
             if case .message(let title, _) = listenerType {
                 XCTAssertEqual(title, "Error", "Error message should be triggered")
                 expectation.fulfill()
@@ -61,9 +63,11 @@ class BookDetailViewModelTests: XCTestCase {
     }
 
     func testRoutingToBookList() {
-        let expectation = XCTestExpectation(description: "")
+        let expectation = XCTestExpectation(description: "Dimiss current view and return to previous feature")
 
-        viewModel.transitionPublisher.sink { transition in
+        viewModel
+            .transitionPublisher
+            .sink { transition in
             switch transition {
             case .pop:
                 XCTAssert(true, "need to pop current screen")
@@ -80,11 +84,13 @@ class BookDetailViewModelTests: XCTestCase {
     }
     
     func testRoutingToSafariServiceWithLink() {
-        let expectation = XCTestExpectation(description: "")
+        let expectation = XCTestExpectation(description: "click link and route to the relative view")
         
         viewModel.viewDidLoad()
         
-        viewModel.transitionPublisher.sink { transition in
+        viewModel
+            .transitionPublisher
+            .sink { transition in
             switch transition {
             case .moveToLink(let link):
                 XCTAssertEqual(link, "test.com")
