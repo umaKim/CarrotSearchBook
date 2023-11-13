@@ -24,11 +24,17 @@ final class BookDetailView: UIView {
         subject.send(.pop)
     }
     
+    private(set) var contentScrollView: UIScrollView = {
+       let scrollView = UIScrollView()
+        scrollView.showsVerticalScrollIndicator = false
+        return scrollView
+    }()
+    private let contentView = UIView()
+    
     private lazy var bookImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
-        imageView.widthAnchor.constraint(equalToConstant: 100).isActive = true
-        imageView.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        imageView.heightAnchor.constraint(equalToConstant: 200).isActive = true
         return imageView
     }()
     
@@ -125,6 +131,7 @@ final class BookDetailView: UIView {
     
     private lazy var urlButton: UIButton = {
         let button = UIButton()
+        button.heightAnchor.constraint(equalToConstant: 50).isActive = true
         button.addTarget(self, action: #selector(urlButtonDidTap), for: .touchUpInside)
         return button
     }()
@@ -203,6 +210,10 @@ final class BookDetailView: UIView {
 extension BookDetailView {
     private func setupUI() {
         backgroundColor = .black
+        addSubview(contentScrollView)
+        contentScrollView.addSubview(contentView)
+        contentScrollView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.translatesAutoresizingMaskIntoConstraints = false
         
         let labelStackView = UIStackView(arrangedSubviews: [
             titleLabel,
@@ -221,8 +232,8 @@ extension BookDetailView {
             pdfLinkContainerView
         ])
         labelStackView.axis = .vertical
-        labelStackView.distribution = .fillProportionally
-        labelStackView.alignment = .center
+        labelStackView.distribution = .fill
+        labelStackView.alignment = .fill
         labelStackView.spacing = 8
         
         let totalStackView = UIStackView(arrangedSubviews: [
@@ -231,19 +242,28 @@ extension BookDetailView {
         ])
         totalStackView.axis = .vertical
         totalStackView.distribution = .fill
-        totalStackView.alignment = .center
+        totalStackView.alignment = .fill
         totalStackView.spacing = 8
         
         [totalStackView].forEach { uv in
-            addSubview(uv)
             uv.translatesAutoresizingMaskIntoConstraints = false
+            contentView.addSubview(uv)
         }
         
         NSLayoutConstraint.activate([
-            totalStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            totalStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            totalStackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-            totalStackView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
+            contentScrollView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            contentScrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            contentScrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            contentScrollView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
+            contentView.topAnchor.constraint(equalTo: contentScrollView.topAnchor),
+            contentView.leadingAnchor.constraint(equalTo: contentScrollView.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: contentScrollView.trailingAnchor),
+            contentView.bottomAnchor.constraint(equalTo: contentScrollView.bottomAnchor),
+            contentView.widthAnchor.constraint(equalTo: contentScrollView.widthAnchor),
+            totalStackView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            totalStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            totalStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            totalStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
         ])
     }
 }
