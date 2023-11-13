@@ -425,7 +425,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7A6EFF7E2B00078E00E5954F /* BookListDataMock.swift in Sources */,
 				7A6EFF772B0005C600E5954F /* BookListViewModelTests.swift in Sources */,
 				7A6EFF852B000CA300E5954F /* BookDetailViewModelTests.swift in Sources */,
 				7A6EFF812B000AF600E5954F /* MockBookListRepository.swift in Sources */,
