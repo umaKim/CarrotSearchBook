@@ -17,7 +17,7 @@ enum BookListViewModelListenerType {
 protocol BookListViewModelInput {
     func fetchBooks()
     func moveToBookDetail(_ index: Int)
-    func updateQuery(_ title: String, completion: @escaping () -> Void)
+    func updateQuery(_ title: String)
 }
 
 protocol BookListViewModelOutput {
@@ -48,12 +48,11 @@ final class BookListViewModel: BookListViewModelProtocol {
     
     private var query: String = ""
     
-    func updateQuery(_ title: String, completion: @escaping () -> Void) {
+    func updateQuery(_ title: String) {
         if title == query { return }
         resetData()
-        self.query = title
-        self.fetchBooks()
-        completion()
+        query = title
+        fetchBooks()
     }
     
     private func resetData() {

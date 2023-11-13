@@ -59,9 +59,7 @@ extension BookListViewController: Alertable {
                 guard let self else { return }
                 switch action {
                 case .searchButtonClicked(let query):
-                    self.viewModel.updateQuery(query) {
-                        UIImageView.cache.removeAllObjects()
-                    }
+                    self.viewModel.updateQuery(query)
                 }
             }
             .store(in: &cancellables)
