@@ -34,7 +34,6 @@ extension Coordinator {
     }
     
     func push(_ viewController: UIViewController, animated: Bool = true) {
-        
         self.navigationController.pushViewController(viewController, animated: animated)
     }
     
@@ -50,4 +49,3 @@ extension Coordinator {
         self.navigationController.dismiss(animated: animated)
     }
 }
-

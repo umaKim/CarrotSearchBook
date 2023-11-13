@@ -42,18 +42,18 @@ final class BookListCoordinator: Coordinator {
     }
     
     private func bookDetail(for isbn: String) {
-        let coordinaotr = BookDetailCoordinator(
+        let coordinator = BookDetailCoordinator(
             navigationController: navigationController,
             container: container,
             isbn: isbn
         )
-        coordinaotr.didFinishPublisher
+        coordinator.didFinishPublisher
             .sink { [weak self] in
                 guard let self else { return }
                 self.childCoordinators.forEach { self.removeChild(coordinator: $0) }
             }
             .store(in: &cancellables)
-        addChild(coordinator: coordinaotr)
-        coordinaotr.start()
+        addChild(coordinator: coordinator)
+        coordinator.start()
     }
 }
