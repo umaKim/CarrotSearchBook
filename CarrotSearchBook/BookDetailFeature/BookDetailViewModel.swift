@@ -21,6 +21,7 @@ protocol BookDetailViewModelInput {
 }
 
 protocol BookDetailViewModelOutput {
+    var transitionPublisher: AnyPublisher<BookDetailTransition, Never> { get }
     var listenPublisher: AnyPublisher<BookDetailViewModelListenerType, Never> { get }
     var bookDetail: BookDetailDomain? { get }
 }

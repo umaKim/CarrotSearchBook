@@ -99,4 +99,25 @@ class BookListViewModelTests: XCTestCase {
         
         wait(for: [expectation], timeout: 5.0)
     }
+    
+    func testRoutingToBookDetailWithIsbn() {
+        let expectation = XCTestExpectation(description: "transition to BookDetail feature")
+        
+        self.viewModel.fetchBooks()
+        
+        viewModel.transitionPublisher.sink { transition in
+            switch transition {
+            case .bookDetail(let isbn):
+                XCTAssertEqual(isbn, "123")
+                expectation.fulfill()
+            }
+        }
+        .store(in: &cancellables)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {[weak self] in
+            self?.viewModel.moveToBookDetail(0)
+        }
+        
+        wait(for: [expectation], timeout: 5.0)
+    }
 }

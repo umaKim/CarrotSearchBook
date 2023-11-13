@@ -16,6 +16,6 @@ class MockBookDetailRepository: BookDetailRepository {
         if shouldReturnError {
             throw NSError(domain: "TestError", code: 0, userInfo: nil)
         }
-        return mockBookDetail ?? BookDetailDomain(title: "", subtitle: "", authors: "", publisher: "", language: "", isbn10: "", isbn13: "", pages: "", year: "", rating: "", desc: "", price: "", image: "", url: "", pdf: [])
+        return mockBookDetail ?? BookDetailDomain(title: "", subtitle: "", authors: "", publisher: "", language: "", isbn10: "", isbn13: "", pages: "", year: "", rating: "", desc: "", price: "", image: "", url: "test.com", pdf: [:])
     }
 }

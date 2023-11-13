@@ -29,7 +29,7 @@ class BookDetailViewModelTests: XCTestCase {
     }
 
     func testFetchBookDetailSuccess() {
-        let expectedDetail = BookDetailDomain(title: "Title: Test", subtitle: "", authors: "", publisher: "", language: "", isbn10: "", isbn13: "", pages: "", year: "", rating: "", desc: "", price: "", image: "", url: "", pdf: [])
+        let expectedDetail = BookDetailDomain(title: "Title: Test", subtitle: "", authors: "", publisher: "", language: "", isbn10: "", isbn13: "", pages: "", year: "", rating: "", desc: "", price: "", image: "", url: "", pdf: [:])
         mockRepository.mockBookDetail = expectedDetail
 
         let expectation = XCTestExpectation(description: "Successfully fetched book detail")
@@ -60,5 +60,45 @@ class BookDetailViewModelTests: XCTestCase {
         wait(for: [expectation], timeout: 5.0)
     }
 
-    // Additional tests can be added here, such as testing the 'pop' method.
+    func testRoutingToBookList() {
+        let expectation = XCTestExpectation(description: "")
+
+        viewModel.transitionPublisher.sink { transition in
+            switch transition {
+            case .pop:
+                XCTAssert(true, "need to pop current screen")
+                expectation.fulfill()
+            default:
+                break
+            }
+        }
+        .store(in: &cancellables)
+        
+        viewModel.pop()
+        
+        wait(for: [expectation], timeout: 5.0)
+    }
+    
+    func testRoutingToSafariServiceWithLink() {
+        let expectation = XCTestExpectation(description: "")
+        
+        viewModel.viewDidLoad()
+        
+        viewModel.transitionPublisher.sink { transition in
+            switch transition {
+            case .moveToLink(let link):
+                XCTAssertEqual(link, "test.com")
+                expectation.fulfill()
+            default:
+                break
+            }
+        }
+        .store(in: &cancellables)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.viewModel.moveToLink("test.com")
+        }
+        
+        wait(for: [expectation], timeout: 5.0)
+    }
 }
