@@ -102,6 +102,7 @@ extension BookListViewController: UIScrollViewDelegate {
 //MARK: - TableView DiffableDataSource
 extension BookListViewController {
     private func setupTableViewDataSource() {
+        contentView.tableView.prefetchDataSource = self
         diffableDataSource = DataSource(tableView: contentView.tableView, cellProvider: {[weak self] tableView, indexPath, itemIdentifier in
             guard
                 let cell = tableView.dequeueReusableCell(
@@ -120,6 +121,16 @@ extension BookListViewController {
         snapshot.appendSections([.main])
         snapshot.appendItems(viewModel.books)
         self.diffableDataSource?.apply(snapshot, animatingDifferences: true)
+    }
+}
+
+//MARK: - UITableViewDataSourcePrefetching
+extension BookListViewController: UITableViewDataSourcePrefetching {
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        for indexPath in indexPaths {
+            let imageUrl = viewModel.books[indexPath.row].image
+            UIImageView().downloaded(from: imageUrl)
+        }
     }
 }
 
