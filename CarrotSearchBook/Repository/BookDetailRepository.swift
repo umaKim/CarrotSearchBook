@@ -35,15 +35,11 @@ final class BookDetailRepositoryImp: BookDetailRepository {
                 desc: "Description: \(bookDetail.desc ?? "")",
                 price: "Price: \(bookDetail.price ?? "")",
                 image: bookDetail.image,
-                url: "URL: \(bookDetail.url ?? "")",
-                pdf: formDictionaryToString(with: bookDetail.pdf ?? [:])
+                url: bookDetail.url,
+                pdf: bookDetail.pdf ?? [:]
             )
         } catch {
             throw error
         }
-    }
-    
-    private func formDictionaryToString(with dictionary: [String: String]) -> [String] {
-        return dictionary.map({ "\($0): \($1)" })
     }
 }

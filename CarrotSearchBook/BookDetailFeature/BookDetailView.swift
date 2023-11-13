@@ -10,6 +10,7 @@ import UIKit
 
 enum BookDetailViewAction {
     case pop
+    case moveToLink(String)
 }
 
 final class BookDetailView: UIView {
@@ -122,6 +123,18 @@ final class BookDetailView: UIView {
         return label
     }()
     
+    private lazy var urlButton: UIButton = {
+        let button = UIButton()
+        button.addTarget(self, action: #selector(urlButtonDidTap), for: .touchUpInside)
+        return button
+    }()
+    
+    @objc
+    private func urlButtonDidTap() {
+        guard let url = data?.url else { return }
+        subject.send(.moveToLink(url))
+    }
+    
     private lazy var pdfLinkContainerView: UIStackView = {
        let stackView = UIStackView(arrangedSubviews: [])
         stackView.axis = .vertical
@@ -139,8 +152,11 @@ final class BookDetailView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    private var data: BookDetailDomain?
+    
     func configure(with data: BookDetailDomain?) {
         guard let data else { return }
+        self.data = data
         bookImageView.downloaded(from: data.image)
         titleLabel.text = data.title
         subtitleLabel.text = data.subtitle
@@ -154,15 +170,33 @@ final class BookDetailView: UIView {
         ratingLabel.text = data.rating
         descLabel.text = data.desc
         priceLabel.text = data.price
-        urlLabel.text = data.url
-        
-        data.pdf?.forEach({ datum in
-            let label = UILabel()
-            label.textColor = .white
-            label.numberOfLines = 0
-            label.text = "\(datum)"
-            pdfLinkContainerView.addArrangedSubview(label)
+        urlButton.setTitle("Go to Store", for: .normal)
+        configurePdfLinkButton(with: data)
+    }
+    
+    private var pdfUrls: [String] = []
+    
+    private func configurePdfLinkButton(with data: BookDetailDomain?) {
+        data?.pdf?.reversed().forEach({ (chapter, url) in
+            let button = UIButton(type: .system)
+            button.setTitle("\(chapter) Link", for: .normal)
+            button.setTitleColor(.white, for: .normal)
+            button.contentHorizontalAlignment = .left
+            button.addTarget(self, action: #selector(pdfButtonTapped(_:)), for: .touchUpInside)
+            button.tag = pdfUrls.count
+            pdfUrls.append(url)
+            pdfLinkContainerView.addArrangedSubview(button)
         })
+    }
+    
+    @objc
+    private func pdfButtonTapped(_ sender: UIButton) {
+        guard
+            sender.tag < pdfUrls.count
+        else { return }
+        
+        let pdfUrl = pdfUrls[sender.tag]
+        subject.send(.moveToLink(pdfUrl))
     }
 }
 
@@ -183,7 +217,7 @@ extension BookDetailView {
             ratingLabel,
             descLabel,
             priceLabel,
-            urlLabel,
+            urlButton,
             pdfLinkContainerView
         ])
         labelStackView.axis = .vertical

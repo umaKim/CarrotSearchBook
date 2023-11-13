@@ -50,6 +50,8 @@ extension BookDetailViewController: Alertable {
                 switch action {
                 case .pop:
                     self.viewModel.pop()
+                case .moveToLink(let link):
+                    self.viewModel.moveToLink(link)
                 }
             }
             .store(in: &cancellables)

@@ -17,6 +17,7 @@ enum BookDetailViewModelListenerType {
 protocol BookDetailViewModelInput {
     func viewDidLoad()
     func pop()
+    func moveToLink(_ link: String)
 }
 
 protocol BookDetailViewModelOutput {
@@ -63,5 +64,9 @@ final class BookDetailViewModel: BookDetailViewModelProtocol {
     
     func pop() {
         transitionSubject.send(.pop)
+    }
+    
+    func moveToLink(_ link: String) {
+        transitionSubject.send(.moveToLink(link))
     }
 }

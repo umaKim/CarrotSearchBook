@@ -42,17 +42,17 @@ final class BookListCoordinator: Coordinator {
     }
     
     private func bookDetail(for isbn: String) {
-        let module = BookDetailBuilder.build(container: container, isbn: isbn)
-        module
-            .transitionPublisher
-            .sink { [weak self] transition in
-                switch transition {
-                case .pop: 
-                    self?.pop()
-                    self?.didFinishSubject.send()
-                }
+        let coordinaotr = BookDetailCoordinator(
+            navigationController: navigationController,
+            container: container,
+            isbn: isbn
+        )
+        coordinaotr.didFinishPublisher
+            .sink { [weak self] in
+                self?.removeChild(coordinator: coordinaotr)
             }
             .store(in: &cancellables)
-        push(module.viewController)
+        addChild(coordinator: coordinaotr)
+        coordinaotr.start()
     }
 }
