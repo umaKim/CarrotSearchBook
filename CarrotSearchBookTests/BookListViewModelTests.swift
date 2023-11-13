@@ -38,7 +38,7 @@ class BookListViewModelTests: XCTestCase {
             }
         }.store(in: &cancellables)
 
-        viewModel.updateQuery("Test", completion: {})
+        viewModel.updateQuery("Test")
         wait(for: [expectation], timeout: 50.0)
     }
 
@@ -55,7 +55,7 @@ class BookListViewModelTests: XCTestCase {
             }
         }.store(in: &cancellables)
 
-        viewModel.updateQuery("Test", completion: {})
+        viewModel.updateQuery("Test")
         wait(for: [expectation], timeout: 5.0)
     }
 
@@ -72,7 +72,7 @@ class BookListViewModelTests: XCTestCase {
             }
         }.store(in: &cancellables)
 
-        viewModel.updateQuery("Test", completion: {})
+        viewModel.updateQuery("Test")
         wait(for: [expectation], timeout: 5.0)
     }
     
@@ -89,7 +89,7 @@ class BookListViewModelTests: XCTestCase {
             }.store(in: &cancellables)
         
         //get first
-        viewModel.updateQuery("Test", completion: {})
+        viewModel.updateQuery("Test")
         
         //get second
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
