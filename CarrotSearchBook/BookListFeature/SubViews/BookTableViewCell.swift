@@ -105,7 +105,6 @@ extension BookTableViewCell {
         
         [imageTitlesStackView].forEach { uv in
             addSubview(uv)
-            uv.translatesAutoresizingMaskIntoConstraints = false
         }
         
         imageTitlesStackView.anchor(

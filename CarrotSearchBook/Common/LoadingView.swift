@@ -49,7 +49,6 @@ final class LoadingView: UIView {
         tag = LoadingView.tagValue
         backgroundColor = UIColor.black.withAlphaComponent(0.5)
         indicator.color = .white
-        indicator.translatesAutoresizingMaskIntoConstraints = false
         addSubview(indicator)
         indicator.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         indicator.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true

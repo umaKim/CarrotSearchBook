@@ -79,7 +79,6 @@ extension BookListView {
     private func setupUI() {
         [tableView].forEach { uv in
             addSubview(uv)
-            uv.translatesAutoresizingMaskIntoConstraints = false
         }
         tableView.fillSuperview()
     }

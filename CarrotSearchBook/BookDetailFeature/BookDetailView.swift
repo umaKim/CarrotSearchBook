@@ -219,8 +219,6 @@ extension BookDetailView {
         backgroundColor = .black
         addSubview(contentScrollView)
         contentScrollView.addSubview(contentView)
-        contentScrollView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.translatesAutoresizingMaskIntoConstraints = false
         
         let labelStackView = UIStackView(arrangedSubviews: [
             titleLabel,
@@ -253,7 +251,6 @@ extension BookDetailView {
         totalStackView.spacing = 8
         
         [totalStackView].forEach { uv in
-            uv.translatesAutoresizingMaskIntoConstraints = false
             contentView.addSubview(uv)
         }
         
