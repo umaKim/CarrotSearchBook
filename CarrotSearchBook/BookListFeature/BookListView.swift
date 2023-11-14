@@ -48,12 +48,9 @@ extension BookListView {
     }
     
     private func showLoadingView() {
-        let activityIndicator = UIActivityIndicatorView(style: .medium)
-        activityIndicator.startAnimating()
-        activityIndicator.isHidden = false
-        activityIndicator.color = .white
-        activityIndicator.frame = .init(origin: .zero, size: .init(width: 100, height: 100))
-        tableView.tableFooterView = activityIndicator
+        let loadingView = LoadingView(frame: .init(origin: .zero, size: .init(width: 100, height: 100)))
+        loadingView.start()
+        tableView.tableFooterView = loadingView
     }
             
     private func hideLoadingView() {
