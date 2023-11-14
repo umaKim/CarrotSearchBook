@@ -41,7 +41,7 @@ class BookListViewModelTests: XCTestCase {
         }.store(in: &cancellables)
 
         viewModel.updateQuery("Test")
-        wait(for: [expectation], timeout: 50.0)
+        wait(for: [expectation], timeout: 5.0)
     }
 
     func testFetchBooksEmpty() {
@@ -81,8 +81,9 @@ class BookListViewModelTests: XCTestCase {
     func testPaginationFirstAndSecondPage() {
         let expectation = XCTestExpectation(description: "Fetched first second page of books")
         
-        viewModel.listenPublisher
-            .dropFirst(2)
+        viewModel
+            .listenPublisher
+            .dropFirst(3)
             .sink { [weak self] listenerType in
                 if case .update = listenerType {
                     XCTAssertEqual(self?.viewModel.books.count, 2, "Total books count should match the first and second page count")
