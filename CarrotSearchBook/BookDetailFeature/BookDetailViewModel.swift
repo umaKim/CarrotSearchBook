@@ -34,7 +34,9 @@ final class BookDetailViewModel: BookDetailViewModelProtocol {
     
     private(set) lazy var listenPublisher = listenSubject.eraseToAnyPublisher()
     private let listenSubject = PassthroughSubject<BookDetailViewModelListenerType, Never>()
-    
+    private var isLoading: Bool = false {
+        didSet { listenSubject.send(.loading(isLoading)) }
+    }
     private(set) var bookDetail: BookDetailDomain?
     
     private let repository: BookDetailRepository
@@ -62,7 +64,7 @@ extension BookDetailViewModel {
 
 extension BookDetailViewModel {
     private func fetchBookDetail() {
-        listenSubject.send(.isLoading(true))
+        isLoading = true
         Task { @MainActor in
             do {
                 bookDetail = try await repository.fetchBookDetail(of: isbn)
@@ -70,7 +72,7 @@ extension BookDetailViewModel {
             } catch {
                 listenSubject.send(.message("Error", error.localizedDescription))
             }
-            listenSubject.send(.isLoading(false))
+            isLoading = false
         }
     }
 }
