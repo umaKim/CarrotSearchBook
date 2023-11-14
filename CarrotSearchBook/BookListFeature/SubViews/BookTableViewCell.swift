@@ -33,7 +33,7 @@ final class BookTableViewCell: UITableViewCell {
         return lb
     }()
     private lazy var isbn13Label: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.textColor = .white
         label.font = .systemFont(ofSize: 8)
         label.minimumScaleFactor = 0.5
@@ -108,11 +108,17 @@ extension BookTableViewCell {
             uv.translatesAutoresizingMaskIntoConstraints = false
         }
         
-        NSLayoutConstraint.activate([
-            imageTitlesStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            imageTitlesStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            imageTitlesStackView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            imageTitlesStackView.topAnchor.constraint(equalTo: topAnchor)
-        ])
+        imageTitlesStackView.anchor(
+            top: topAnchor,
+            leading: leadingAnchor,
+            bottom: bottomAnchor,
+            trailing: trailingAnchor,
+            padding: .init(
+                top: 0,
+                left: 16,
+                bottom: 0,
+                right: 16
+            )
+        )
     }
 }

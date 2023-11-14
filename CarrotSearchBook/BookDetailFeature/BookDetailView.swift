@@ -25,7 +25,7 @@ final class BookDetailView: UIView {
     }
     
     private(set) var contentScrollView: UIScrollView = {
-       let scrollView = UIScrollView()
+        let scrollView = UIScrollView()
         scrollView.showsVerticalScrollIndicator = false
         return scrollView
     }()
@@ -144,7 +144,7 @@ final class BookDetailView: UIView {
     }
     
     private lazy var pdfLinkContainerView: UIStackView = {
-       let stackView = UIStackView(arrangedSubviews: [])
+        let stackView = UIStackView(arrangedSubviews: [])
         stackView.axis = .vertical
         stackView.alignment = .center
         stackView.distribution = .fillEqually
@@ -257,20 +257,35 @@ extension BookDetailView {
             contentView.addSubview(uv)
         }
         
-        NSLayoutConstraint.activate([
-            contentScrollView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-            contentScrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            contentScrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            contentScrollView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
-            contentView.topAnchor.constraint(equalTo: contentScrollView.topAnchor),
-            contentView.leadingAnchor.constraint(equalTo: contentScrollView.leadingAnchor),
-            contentView.trailingAnchor.constraint(equalTo: contentScrollView.trailingAnchor),
-            contentView.bottomAnchor.constraint(equalTo: contentScrollView.bottomAnchor),
-            contentView.widthAnchor.constraint(equalTo: contentScrollView.widthAnchor),
-            totalStackView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            totalStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            totalStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            totalStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
-        ])
+        contentScrollView.anchor(
+            top: safeAreaLayoutGuide.topAnchor,
+            leading: leadingAnchor,
+            bottom: safeAreaLayoutGuide.bottomAnchor,
+            trailing: trailingAnchor
+        )
+        
+        contentView.anchor(
+            top: contentScrollView.topAnchor,
+            leading: contentScrollView.leadingAnchor,
+            bottom: contentScrollView.bottomAnchor,
+            trailing: contentScrollView.trailingAnchor
+        )
+        
+        contentView.constrainWidth(
+            constant: UIScreen.main.bounds.width
+        )
+        
+        totalStackView.anchor(
+            top: contentView.topAnchor,
+            leading: contentView.leadingAnchor,
+            bottom: contentView.bottomAnchor,
+            trailing: contentView.trailingAnchor,
+            padding: .init(
+                top: 0,
+                left: 16,
+                bottom: 32,
+                right: 16
+            )
+        )
     }
 }

@@ -41,6 +41,7 @@
 		7A6EFF812B000AF600E5954F /* MockBookListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6EFF802B000AF600E5954F /* MockBookListRepository.swift */; };
 		7A6EFF852B000CA300E5954F /* BookDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6EFF842B000CA300E5954F /* BookDetailViewModelTests.swift */; };
 		7A6EFF872B000CB500E5954F /* MockBookDetailRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6EFF862B000CB500E5954F /* MockBookDetailRepository.swift */; };
+		7AE8CD672B03120F002F593F /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE8CD662B03120F002F593F /* UIView+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +92,7 @@
 		7A6EFF802B000AF600E5954F /* MockBookListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockBookListRepository.swift; sourceTree = "<group>"; };
 		7A6EFF842B000CA300E5954F /* BookDetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailViewModelTests.swift; sourceTree = "<group>"; };
 		7A6EFF862B000CB500E5954F /* MockBookDetailRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockBookDetailRepository.swift; sourceTree = "<group>"; };
+		7AE8CD662B03120F002F593F /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -242,6 +244,7 @@
 			children = (
 				7A6D65E52AFEC6BA00D5BBEC /* UIImageView+Ext.swift */,
 				7A6D65E92AFF564100D5BBEC /* JSONDecoder+Ext.swift */,
+				7AE8CD662B03120F002F593F /* UIView+Ext.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -405,6 +408,7 @@
 				7A6D65B62AFE3D9200D5BBEC /* Coordinator.swift in Sources */,
 				7A6D65BD2AFE3E4000D5BBEC /* BookListCoordinator.swift in Sources */,
 				7A6EFF6F2AFFF90600E5954F /* BookDomain.swift in Sources */,
+				7AE8CD672B03120F002F593F /* UIView+Ext.swift in Sources */,
 				7A6D65E32AFEB6B300D5BBEC /* BookDetail.swift in Sources */,
 				7A6EFF6A2AFFF6DB00E5954F /* BookDetailDomain.swift in Sources */,
 				7A6D65DB2AFEB0FA00D5BBEC /* BookDetailBuilder.swift in Sources */,

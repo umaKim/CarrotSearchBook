@@ -81,12 +81,6 @@ extension BookListView {
             addSubview(uv)
             uv.translatesAutoresizingMaskIntoConstraints = false
         }
-        
-        NSLayoutConstraint.activate([
-            tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            tableView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-            tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: bottomAnchor)
-        ])
+        tableView.fillSuperview()
     }
 }
