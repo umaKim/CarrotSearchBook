@@ -45,8 +45,8 @@ final class AppCoordinator: Coordinator {
             .sink {[weak self] in
                 guard let self else { return }
                 self.childCoordinators.forEach { self.removeChild(coordinator: $0) }
-        }
-        .store(in: &cancellables)
+            }
+            .store(in: &cancellables)
         addChild(coordinator: coordinator)
         coordinator.start()
     }
