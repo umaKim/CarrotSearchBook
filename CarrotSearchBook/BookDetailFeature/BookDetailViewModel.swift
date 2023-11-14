@@ -48,6 +48,7 @@ final class BookDetailViewModel: BookDetailViewModelProtocol {
     }
 }
 
+//MARK: - BookDetailViewModelInput
 extension BookDetailViewModel {
     func viewDidLoad() {
         fetchBookDetail()
@@ -62,6 +63,7 @@ extension BookDetailViewModel {
     }
 }
 
+//MARK: - Private Methods
 extension BookDetailViewModel {
     private func fetchBookDetail() {
         isLoading = true

@@ -52,6 +52,7 @@ final class BookListViewModel: BookListViewModelProtocol {
     }
 }
 
+//MARK: - BookListViewModelInput
 extension BookListViewModel {
     func updateQuery(_ title: String) {
         guard title != query else { return }
@@ -71,6 +72,7 @@ extension BookListViewModel {
     }
 }
 
+//MARK: - Private Methods
 extension BookListViewModel {
     private func resetData() {
         books.removeAll()

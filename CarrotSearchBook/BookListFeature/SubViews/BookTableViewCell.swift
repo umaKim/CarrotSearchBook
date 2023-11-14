@@ -88,6 +88,7 @@ extension BookTableViewCell {
     }
 }
 
+//MARK: - Set up UI
 extension BookTableViewCell {
     private func setupUI() {
         contentView.backgroundColor = .black

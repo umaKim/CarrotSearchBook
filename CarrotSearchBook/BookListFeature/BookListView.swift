@@ -69,6 +69,7 @@ extension BookListView {
     }
 }
 
+//MARK: - UISearchBarDelegate
 extension BookListView: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchText = searchBar.text else { return }
@@ -76,6 +77,7 @@ extension BookListView: UISearchBarDelegate {
     }
 }
 
+//MARK: - Set up UI
 extension BookListView {
     private func setupUI() {
         [tableView].forEach { uv in

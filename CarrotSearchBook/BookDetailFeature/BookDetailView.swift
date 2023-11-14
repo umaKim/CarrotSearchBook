@@ -151,6 +151,10 @@ final class BookDetailView: UIView {
         return stackView
     }()
     
+    private var data: BookDetailDomain?
+    
+    private var pdfUrls: [String] = []
+    
     init() {
         super.init(frame: .zero)
         setupUI()
@@ -160,8 +164,10 @@ final class BookDetailView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private var data: BookDetailDomain?
-    
+}
+
+//MARK: - Public Methods
+extension BookDetailView {
     func configure(with data: BookDetailDomain?) {
         guard let data else { return }
         self.data = data
@@ -181,9 +187,10 @@ final class BookDetailView: UIView {
         urlButton.setTitle("Go to Store", for: .normal)
         configurePdfLinkButton(with: data)
     }
-    
-    private var pdfUrls: [String] = []
-    
+}
+
+//MARK: - Pdf link button maker
+extension BookDetailView {
     private func configurePdfLinkButton(with data: BookDetailDomain?) {
         pdfUrls = []
         data?.pdf?.forEach { (chapter, url) in
@@ -214,6 +221,7 @@ final class BookDetailView: UIView {
     }
 }
 
+//MARK: - set up UI
 extension BookDetailView {
     private func setupUI() {
         backgroundColor = .black
