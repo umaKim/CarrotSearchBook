@@ -50,8 +50,8 @@ final class LoadingView: UIView {
         backgroundColor = UIColor.black.withAlphaComponent(0.5)
         indicator.color = .white
         addSubview(indicator)
-        indicator.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        indicator.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        indicator.centerXInSuperview()
+        indicator.centerYInSuperview()
     }
 
     func start() {
