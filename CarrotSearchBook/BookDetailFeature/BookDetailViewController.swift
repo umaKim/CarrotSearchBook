@@ -19,6 +19,7 @@ final class BookDetailViewController: UIViewController, LoadingShowable {
         self.viewModel = viewModel
         self.cancellables = .init()
         super.init(nibName: nil, bundle: nil)
+        bind()
     }
     
     required init?(coder: NSCoder) {
@@ -37,7 +38,6 @@ extension BookDetailViewController {
         super.viewDidLoad()
         navigationItem.leftBarButtonItem = contentView.popButton
         viewModel.viewDidLoad()
-        bind()
     }
 }
 

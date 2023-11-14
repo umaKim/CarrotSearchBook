@@ -25,6 +25,7 @@ final class BookListViewController: UIViewController {
         self.viewModel = viewModel
         self.cancellables = .init()
         super.init(nibName: nil, bundle: nil)
+        bind()
     }
     
     required init?(coder: NSCoder) {
@@ -44,7 +45,6 @@ extension BookListViewController {
         navigationItem.searchController = contentView.searchController
         contentView.tableView.delegate = self
         setupTableViewDataSource()
-        bind()
     }
     
     override func viewDidAppear(_ animated: Bool) {
