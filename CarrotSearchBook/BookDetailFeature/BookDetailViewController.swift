@@ -64,7 +64,7 @@ extension BookDetailViewController: Alertable {
         viewModel.listenPublisher.sink { [weak self] type in
             guard let self = self else { return }
             switch type {
-            case .isLoading(let isLoading):
+            case .loading(let isLoading):
                 isLoading ? self.showLoadingView() : self.hideLoadingView()
             case .updateData:
                 self.contentView.configure(with: self.viewModel.bookDetail)

@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 enum BookDetailViewModelListenerType {
-    case isLoading(Bool)
+    case loading(Bool)
     case updateData
     case message(String, String)
 }
