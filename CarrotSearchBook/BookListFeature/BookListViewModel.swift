@@ -62,7 +62,6 @@ extension BookListViewModel {
     
     func fetchBooks() {
         guard canFetchMoreBooks else { return }
-        isLoading = true
         fetchBookData()
     }
     
@@ -84,7 +83,8 @@ extension BookListViewModel {
     }
     
     private func fetchBookData() {
-        Task { @MainActor in
+        isLoading = true
+        Task {@MainActor in
             do {
                 let bookResponse = try await repository.fetchBooks(for: query, page: currentPage)
                 processBookResponse(bookResponse)
@@ -93,7 +93,6 @@ extension BookListViewModel {
                 listenSubject.send(.message("Error", error.localizedDescription))
             }
             isLoading = false
-            listenSubject.send(.loading(false))
         }
     }
     
