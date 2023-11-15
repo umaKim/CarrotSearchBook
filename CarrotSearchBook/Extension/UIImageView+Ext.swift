@@ -34,6 +34,7 @@ extension UIImageView {
                 let mimeType = response.mimeType, mimeType.hasPrefix("image"),
                 let image = UIImage(data: data)
             else { return }
+            self.cacheImageSetter(with: url.absoluteString, and: image)
             self.image = image
         }
     }
