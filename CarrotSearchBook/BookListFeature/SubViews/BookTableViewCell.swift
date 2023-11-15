@@ -13,7 +13,7 @@ final class BookTableViewCell: UITableViewCell {
     private lazy var bookImageView: UIImageView = {
         let uv = UIImageView()
         uv.contentMode = .scaleAspectFit
-        uv.widthAnchor.constraint(equalToConstant: 70).isActive = true
+        uv.widthAnchor.constraint(equalToConstant: 80).isActive = true
         return uv
     }()
     private lazy var titleLabel: UILabel = {
