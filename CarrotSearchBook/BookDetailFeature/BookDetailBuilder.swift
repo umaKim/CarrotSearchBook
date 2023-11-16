@@ -8,7 +8,7 @@
 import UIKit
 
 enum BookDetailTransition: Transition {
-    case pop
+    case dismiss
     case moveToLink(String)
 }
 

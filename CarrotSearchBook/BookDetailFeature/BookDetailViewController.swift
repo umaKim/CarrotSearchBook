@@ -36,7 +36,6 @@ extension BookDetailViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.leftBarButtonItem = contentView.popButton
         viewModel.viewDidLoad()
     }
 }
@@ -52,8 +51,6 @@ extension BookDetailViewController: Alertable {
         contentView.publisher.sink { [weak self] action in
             guard let self = self else { return }
             switch action {
-            case .pop:
-                self.viewModel.pop()
             case .moveToLink(let link):
                 self.viewModel.moveToLink(link)
             }

@@ -69,7 +69,7 @@ class BookDetailViewModelTests: XCTestCase {
             .transitionPublisher
             .sink { transition in
             switch transition {
-            case .pop:
+            case .dismiss:
                 XCTAssert(true, "need to pop current screen")
                 expectation.fulfill()
             default:
@@ -78,7 +78,8 @@ class BookDetailViewModelTests: XCTestCase {
         }
         .store(in: &cancellables)
         
-        viewModel.pop()
+        //deinit viewModel
+        viewModel = nil
         
         wait(for: [expectation], timeout: 5.0)
     }

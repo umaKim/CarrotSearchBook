@@ -16,7 +16,6 @@ enum BookDetailViewModelListenerType {
 
 protocol BookDetailViewModelInput {
     func viewDidLoad()
-    func pop()
     func moveToLink(_ link: String)
 }
 
@@ -46,16 +45,16 @@ final class BookDetailViewModel: BookDetailViewModelProtocol {
         self.repository = repository
         self.isbn = isbn
     }
+    
+    deinit {
+        transitionSubject.send(.dismiss)
+    }
 }
 
 //MARK: - BookDetailViewModelInput
 extension BookDetailViewModel {
     func viewDidLoad() {
         fetchBookDetail()
-    }
-    
-    func pop() {
-        transitionSubject.send(.pop)
     }
     
     func moveToLink(_ link: String) {

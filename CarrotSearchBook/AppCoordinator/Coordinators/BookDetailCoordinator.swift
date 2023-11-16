@@ -36,8 +36,7 @@ final class BookDetailCoordinator: Coordinator{
             .transitionPublisher
             .sink { [weak self] transition in
                 switch transition {
-                case .pop:
-                    self?.pop()
+                case .dismiss:
                     self?.didFinishSubject.send()
                     
                 case .moveToLink(let link):

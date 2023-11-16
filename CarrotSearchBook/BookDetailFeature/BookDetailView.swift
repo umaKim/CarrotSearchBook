@@ -9,20 +9,12 @@ import Combine
 import UIKit
 
 enum BookDetailViewAction {
-    case pop
     case moveToLink(String)
 }
 
 final class BookDetailView: UIView {
     private(set) lazy var publisher = subject.eraseToAnyPublisher()
     private let subject = PassthroughSubject<BookDetailViewAction, Never>()
-    
-    private(set) lazy var popButton = UIBarButtonItem(image: .init(systemName: "arrow.backward"), style: .done, target: self, action: #selector(popButtonIsTapped))
-    
-    @objc
-    private func popButtonIsTapped() {
-        subject.send(.pop)
-    }
     
     private(set) var contentScrollView: UIScrollView = {
         let scrollView = UIScrollView()
