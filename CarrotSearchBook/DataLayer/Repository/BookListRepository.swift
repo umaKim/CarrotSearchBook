@@ -7,10 +7,6 @@
 
 import Foundation
 
-protocol BookListRepository {
-    func fetchBooks(for title: String, page: Int) async throws -> BookResponseDomain
-}
-
 final class BookListRepositoryImp: BookListRepository {
     private let network: BookListNetworkable
     
