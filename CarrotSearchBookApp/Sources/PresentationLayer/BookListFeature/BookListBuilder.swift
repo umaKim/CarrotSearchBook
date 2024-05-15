@@ -11,8 +11,8 @@ enum BookListTransition: Transition {
     case bookDetail(String)
 }
 
-final class BookListBuilder {
-    class func build(container: AppContainer) -> Module<BookListTransition, UIViewController> {
+enum BookListBuilder {
+    static func build(container: AppContainer) -> Module<BookListTransition, UIViewController> {
         let repository = BookListRepositoryImp(network: container.network)
         let viewModel = BookListViewModel(repository)
         let viewController = BookListViewController(of: viewModel)

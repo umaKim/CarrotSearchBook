@@ -8,22 +8,22 @@
 import Foundation
 
 public struct BookDetail: Decodable {
-    let error: String?
-    let title: String?
-    let subtitle: String?
-    let authors: String?
-    let publisher: String?
-    let language: String?
-    let isbn10: String?
-    let isbn13: String?
-    let pages: String?
-    let year: String?
-    let rating: String?
-    let desc: String?
-    let price: String?
-    let image: String?
-    let url: String?
-    let pdf: [String: String]?
+    public let error: String?
+    public let title: String?
+    public let subtitle: String?
+    public let authors: String?
+    public let publisher: String?
+    public let language: String?
+    public let isbn10: String?
+    public let isbn13: String?
+    public let pages: String?
+    public let year: String?
+    public let rating: String?
+    public let desc: String?
+    public let price: String?
+    public let image: String?
+    public let url: String?
+    public let pdf: [String: String]?
     
     public init(error: String?, title: String?, subtitle: String?, authors: String?, publisher: String?, language: String?, isbn10: String?, isbn13: String?, pages: String?, year: String?, rating: String?, desc: String?, price: String?, image: String?, url: String?, pdf: [String : String]?) {
         self.error = error

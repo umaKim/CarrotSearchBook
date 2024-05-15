@@ -4,19 +4,22 @@
 //
 //  Created by 김윤석 on 2023/11/11.
 //
+import Common
+import Infrastructure
 import DomainLayer
 import Foundation
 
-final class BookDetailRepositoryImp: BookDetailRepository {
+public final class BookDetailRepositoryImp: BookDetailRepository {
     private let network: BookDetailNetworkable
     
-    init(network: BookDetailNetworkable) {
+    public init(network: BookDetailNetworkable) {
         self.network = network
     }
     
-    func fetchBookDetail(of isbn: String) async throws -> BookDetailDomain {
+    public func fetchBookDetail(of isbn: String) async throws -> BookDetailDomain {
         do {
-            let bookDetail = try await network.fetchBookDetails(of: isbn)
+            let data = try await network.fetchBookDetails(of: isbn)
+            let bookDetail = try data.decode(to: BookDetail.self)
             return .init(
                 title: "Title: \(bookDetail.title ?? "")",
                 subtitle: "Subtitle: \(bookDetail.subtitle ?? "")",

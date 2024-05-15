@@ -7,8 +7,8 @@
 
 import Foundation
 
-extension Decodable {
-    public static func decode(with decoder: JSONDecoder = JSONDecoder(), from data: Data) throws -> Self {
-        return try decoder.decode(Self.self, from: data)
+extension Data {
+    public func decode<T: Decodable>(to type: T.Type) throws -> T {
+        return try JSONDecoder().decode(type, from: self)
     }
 }

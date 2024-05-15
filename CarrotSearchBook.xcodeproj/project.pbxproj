@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		7A3A78202B21FB8600193BB0 /* PresentationLayer in Frameworks */ = {isa = PBXBuildFile; productRef = 7A3A781F2B21FB8600193BB0 /* PresentationLayer */; };
 		7A3A78222B21FC1700193BB0 /* CarrotSearchBookApp in Resources */ = {isa = PBXBuildFile; fileRef = 7A3A78212B21FC1700193BB0 /* CarrotSearchBookApp */; };
+		7A3A782A2B24C8B700193BB0 /* DataLayer in Frameworks */ = {isa = PBXBuildFile; productRef = 7A3A78292B24C8B700193BB0 /* DataLayer */; };
+		7A3A782C2B24CC8900193BB0 /* DomainLayer in Frameworks */ = {isa = PBXBuildFile; productRef = 7A3A782B2B24CC8900193BB0 /* DomainLayer */; };
+		7A3A785B2B26D0BA00193BB0 /* DIManager in Frameworks */ = {isa = PBXBuildFile; productRef = 7A3A785A2B26D0BA00193BB0 /* DIManager */; };
+		7A4764272B4F81B700522BD5 /* AppDI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A4764262B4F81B700522BD5 /* AppDI.swift */; };
+		7A4764292B4F8AAB00522BD5 /* AppContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A4764282B4F8AAB00522BD5 /* AppContainer.swift */; };
 		7A6D65A12AFE376700D5BBEC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6D65A02AFE376700D5BBEC /* AppDelegate.swift */; };
 		7A6D65A32AFE376700D5BBEC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6D65A22AFE376700D5BBEC /* SceneDelegate.swift */; };
 		7A6D65AA2AFE376900D5BBEC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A6D65A92AFE376900D5BBEC /* Assets.xcassets */; };
@@ -29,9 +34,27 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		7A3A787B2B26D70200193BB0 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		7A3A78212B21FC1700193BB0 /* CarrotSearchBookApp */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = CarrotSearchBookApp; sourceTree = "<group>"; };
 		7A3A78232B21FD2600193BB0 /* Platform */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Platform; sourceTree = "<group>"; };
+		7A3A78632B26D70100193BB0 /* Excutable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Excutable.h; sourceTree = "<group>"; };
+		7A3A78642B26D70100193BB0 /* Excutable.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = Excutable.docc; sourceTree = "<group>"; };
+		7A3A78712B26D70100193BB0 /* ExcutableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExcutableTests.swift; sourceTree = "<group>"; };
+		7A4764262B4F81B700522BD5 /* AppDI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDI.swift; sourceTree = "<group>"; };
+		7A4764282B4F8AAB00522BD5 /* AppContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContainer.swift; sourceTree = "<group>"; };
 		7A6D659D2AFE376700D5BBEC /* CarrotSearchBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarrotSearchBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A6D65A02AFE376700D5BBEC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7A6D65A22AFE376700D5BBEC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -50,7 +73,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7A3A782A2B24C8B700193BB0 /* DataLayer in Frameworks */,
+				7A3A785B2B26D0BA00193BB0 /* DIManager in Frameworks */,
 				7A3A78202B21FB8600193BB0 /* PresentationLayer in Frameworks */,
+				7A3A782C2B24CC8900193BB0 /* DomainLayer in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,6 +97,32 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		7A3A78622B26D70100193BB0 /* Excutable */ = {
+			isa = PBXGroup;
+			children = (
+				7A3A78632B26D70100193BB0 /* Excutable.h */,
+				7A3A78642B26D70100193BB0 /* Excutable.docc */,
+			);
+			path = Excutable;
+			sourceTree = "<group>";
+		};
+		7A3A78702B26D70100193BB0 /* ExcutableTests */ = {
+			isa = PBXGroup;
+			children = (
+				7A3A78712B26D70100193BB0 /* ExcutableTests.swift */,
+			);
+			path = ExcutableTests;
+			sourceTree = "<group>";
+		};
+		7A4764252B4F816900522BD5 /* DependencyInjection */ = {
+			isa = PBXGroup;
+			children = (
+				7A4764282B4F8AAB00522BD5 /* AppContainer.swift */,
+				7A4764262B4F81B700522BD5 /* AppDI.swift */,
+			);
+			path = DependencyInjection;
+			sourceTree = "<group>";
+		};
 		7A6D65942AFE376700D5BBEC = {
 			isa = PBXGroup;
 			children = (
@@ -78,6 +130,8 @@
 				7A3A78212B21FC1700193BB0 /* CarrotSearchBookApp */,
 				7A6D659F2AFE376700D5BBEC /* CarrotSearchBook */,
 				7A6EFF752B0005C600E5954F /* CarrotSearchBookTests */,
+				7A3A78622B26D70100193BB0 /* Excutable */,
+				7A3A78702B26D70100193BB0 /* ExcutableTests */,
 				7A6D659E2AFE376700D5BBEC /* Products */,
 				7A3A781A2B21F4D900193BB0 /* Frameworks */,
 			);
@@ -97,6 +151,7 @@
 			children = (
 				7A6D65A02AFE376700D5BBEC /* AppDelegate.swift */,
 				7A6D65A22AFE376700D5BBEC /* SceneDelegate.swift */,
+				7A4764252B4F816900522BD5 /* DependencyInjection */,
 				7A6D65A92AFE376900D5BBEC /* Assets.xcassets */,
 				7A6D65AB2AFE376900D5BBEC /* LaunchScreen.storyboard */,
 				7A6D65AE2AFE376900D5BBEC /* Info.plist */,
@@ -133,6 +188,7 @@
 				7A6D65992AFE376700D5BBEC /* Sources */,
 				7A6D659A2AFE376700D5BBEC /* Frameworks */,
 				7A6D659B2AFE376700D5BBEC /* Resources */,
+				7A3A787B2B26D70200193BB0 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -141,6 +197,9 @@
 			name = CarrotSearchBook;
 			packageProductDependencies = (
 				7A3A781F2B21FB8600193BB0 /* PresentationLayer */,
+				7A3A78292B24C8B700193BB0 /* DataLayer */,
+				7A3A782B2B24CC8900193BB0 /* DomainLayer */,
+				7A3A785A2B26D0BA00193BB0 /* DIManager */,
 			);
 			productName = CarrotSearchBook;
 			productReference = 7A6D659D2AFE376700D5BBEC /* CarrotSearchBook.app */;
@@ -229,6 +288,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7A4764272B4F81B700522BD5 /* AppDI.swift in Sources */,
+				7A4764292B4F8AAB00522BD5 /* AppContainer.swift in Sources */,
 				7A6D65A12AFE376700D5BBEC /* AppDelegate.swift in Sources */,
 				7A6D65A32AFE376700D5BBEC /* SceneDelegate.swift in Sources */,
 			);
@@ -514,6 +575,18 @@
 		7A3A781F2B21FB8600193BB0 /* PresentationLayer */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = PresentationLayer;
+		};
+		7A3A78292B24C8B700193BB0 /* DataLayer */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DataLayer;
+		};
+		7A3A782B2B24CC8900193BB0 /* DomainLayer */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DomainLayer;
+		};
+		7A3A785A2B26D0BA00193BB0 /* DIManager */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DIManager;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

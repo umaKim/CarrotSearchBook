@@ -40,6 +40,17 @@
                ReferencedContainer = "container:CarrotSearchBook.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "7A3A78692B26D70100193BB0"
+               BuildableName = "ExcutableTests.xctest"
+               BlueprintName = "ExcutableTests"
+               ReferencedContainer = "container:CarrotSearchBook.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

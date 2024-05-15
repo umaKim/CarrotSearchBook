@@ -4,7 +4,6 @@
 //
 //  Created by 김윤석 on 2023/12/07.
 //
-
 import Foundation
 
 public protocol BookListRepository {

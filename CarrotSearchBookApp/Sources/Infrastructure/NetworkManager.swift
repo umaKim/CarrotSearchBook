@@ -5,16 +5,16 @@
 //  Created by 김윤석 on 2023/11/11.
 //
 //import DataLayer
-import Common
+//import Common
 import Combine
 import Foundation
 
 public protocol BookListNetworkable {
-    func fetchBooks(for title: String, page: Int) async throws -> BookResponse
+    func fetchBooks(for title: String, page: Int) async throws -> Data
 }
 
 public protocol BookDetailNetworkable {
-    func fetchBookDetails(of isbn: String) async throws -> BookDetail
+    func fetchBookDetails(of isbn: String) async throws -> Data
 }
 
 public typealias NetworkManageable = BookListNetworkable & BookDetailNetworkable
@@ -43,19 +43,19 @@ public final class NetworkManager {
 }
 
 extension NetworkManager: BookListNetworkable {
-    public func fetchBooks(for title: String, page: Int) async throws -> BookResponse {
+    public func fetchBooks(for title: String, page: Int) async throws -> Data {
         try await request(url: .init(string: "\(BookApi.baseUrl)search/\(title)/\(page)"), method: .get)
     }
 }
 
 extension NetworkManager: BookDetailNetworkable {
-    public func fetchBookDetails(of isbn: String) async throws -> BookDetail {
+    public func fetchBookDetails(of isbn: String) async throws -> Data {
         try await request(url: .init(string: "\(BookApi.baseUrl)books/\(isbn)"), method: .get)
     }
 }
 
 extension NetworkManager {
-    private func request<T: Decodable>(url: URL?, method: HTTPMethodType) async throws -> T {
+    private func request(url: URL?, method: HTTPMethodType) async throws -> Data {
         guard let url else { throw BookApiError.invalidUrl }
         var request = URLRequest(url: url)
         request.httpMethod = method.rawValue
@@ -66,8 +66,8 @@ extension NetworkManager {
                 let httpResponse = response as? HTTPURLResponse,
                 httpResponse.statusCode == 200
             else { throw BookApiError.invalidResponse }
-            let decodedData = try T.decode(from: data)
-            return decodedData
+//            let decodedData = try T.decode(from: data)
+            return data
         } catch {
             throw error
         }

@@ -7,10 +7,10 @@
 
 import Foundation
 
-public struct BookResponseDomain: Decodable {
-    let total: String?
-    let page: String?
-    let books: [BookDomain]
+public struct BookResponseDomain {
+    public let total: String?
+    public let page: String?
+    public let books: [BookDomain]
     
     public init(total: String?, page: String?, books: [BookDomain]) {
         self.total = total
@@ -19,14 +19,14 @@ public struct BookResponseDomain: Decodable {
     }
 }
 
-public struct BookDomain: Decodable, Hashable {
-    let id: UUID?
-    let title: String?
-    let subtitle: String?
-    let isbn13: String?
-    let price: String?
-    let image: String?
-    let url: String?
+public struct BookDomain: Hashable {
+    public let id: UUID?
+    public let title: String?
+    public let subtitle: String?
+    public let isbn13: String?
+    public let price: String?
+    public let image: String?
+    public let url: String?
     
     public init(id: UUID?, title: String?, subtitle: String?, isbn13: String?, price: String?, image: String?, url: String?) {
         self.id = id

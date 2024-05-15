@@ -9,21 +9,45 @@ let package = Package(
     products: [
         //이렇게??
 //        .library(name: "BookListPresentationLayer", targets: ["BookListPresentationLayer"])
-            .library(name: "PresentationLayer", targets: ["PresentationLayer"]),
-            .library(name: "DomainLayer", targets: ["DomainLayer"]),
-            .library(name: "DataLayer", targets: ["DataLayer"]),
-            .library(name: "Infrastructure", targets: ["Infrastructure"])
+        
+        .library(name: "DIManager", targets: ["DIManager"]),
+        .library(name: "PresentationLayer",  targets: ["PresentationLayer"]),
+        .library(name: "DomainLayer", targets: ["DomainLayer"]),
+        .library(name: "DataLayer", targets: ["DataLayer"]),
+        .library(name: "Infrastructure", targets: ["Infrastructure"])
     ],
-    dependencies: [.package(path: "../Platform")],
+    dependencies: [
+        .package(path: "../Platform"),
+//        .package(url: "https://github.com/Swinject/Swinject.git", from: "2.8.0")
+    ],
     targets: [
         
-        //dependency를 ca dependency로 만들어야하는가?
-        // presentation -> Domain <- Data 이렇게??
-        .target(name: "PresentationLayer", dependencies: []),
-        .target(name: "DomainLayer", dependencies: []),
-        .target(name: "DataLayer", dependencies: []),
-        .target(name: "Infrastructure", dependencies: [
+//        // presentation -> Domain <- Data
+//        .target(name: "DIManager", dependencies: [
+////            "PresentationLayer",
+//            "DomainLayer",
+//            "DataLayer",
+//            "Infrastructure"
+//        ]),
+        
+        //Presentation -> Domain
+        .target(name: "PresentationLayer", dependencies: [
+            "DomainLayer"
+        ]),
+        
+        .target(name: "DomainLayer", dependencies: [
+//            "DIManager"
+        ]),
+        
+        // Data -> Domain
+        .target(name: "DataLayer", dependencies: [
+            "DomainLayer",
+            "Infrastructure",
             .product(name: "Common", package: "Platform")
-        ])
+        ]),
+        
+        .target(name: "Infrastructure", dependencies: [])
     ]
 )
+
+

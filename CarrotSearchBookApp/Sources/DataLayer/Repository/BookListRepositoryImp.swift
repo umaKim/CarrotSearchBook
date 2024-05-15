@@ -4,23 +4,25 @@
 //
 //  Created by 김윤석 on 2023/11/11.
 //
+import Infrastructure
 import Foundation
 import DomainLayer
 
-final class BookListRepositoryImp: BookListRepository {
+public final class BookListRepositoryImp: BookListRepository {
     private let network: BookListNetworkable
     
-    init(network: BookListNetworkable) {
+    public init(network: BookListNetworkable) {
         self.network = network
     }
     
-    func fetchBooks(for title: String, page: Int) async throws -> BookResponseDomain {
+    public func fetchBooks(for title: String, page: Int) async throws -> BookResponseDomain {
         do {
-            let bookresponse = try await network.fetchBooks(for: title, page: page)
+            let data = try await network.fetchBooks(for: title, page: page)
+            let decodedData = try data.decode(to: BookResponse.self)
             return .init(
-                total: bookresponse.total,
-                page: bookresponse.page,
-                books: bookresponse.books.map({
+                total: decodedData.total,
+                page: decodedData.page,
+                books: decodedData.books.map({
                     .init(
                         id: UUID(),
                         title: $0.title,
